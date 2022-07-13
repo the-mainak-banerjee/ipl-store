@@ -1,6 +1,7 @@
 export { Navbar } from './Navbar'
 export { SideNavBar } from './SideNavBar'
 export { SubNavbar } from './SubNavbar'
+export { Footer } from './Footer'
 export { ProductList } from './ProductList'
 export { ProductCard } from './ProductCard'
 export { FilterBar } from './FilterBar'

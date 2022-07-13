@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Navbar } from "./components";
+import { Footer, Navbar } from "./components";
 import { ProductPage } from "./pages";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path='/products' element={<ProductPage/>}/>
       </Routes>
+      <Footer/>
     </>
   );
 }

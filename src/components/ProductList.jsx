@@ -69,7 +69,7 @@ export const ProductList = ({ products }) => {
     return (
       <ProductCard
         key={uuidV4()}
-        id={item.id}
+        id={item._id}
         name= {item.name}
         description = {item.description}
         price = {item.price}

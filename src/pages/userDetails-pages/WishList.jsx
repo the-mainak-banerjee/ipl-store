@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { PrimaryButton, ProductList, SubNavbar } from '../../components'
 import { AiOutlineHeart } from 'react-icons/ai'
+import { usePageTitle } from '../../hooks'
 
 export const WishList = () => {
+
+    usePageTitle('IPLStores-Wishlist')
 
     const wishListItems = [
       //   {
@@ -52,10 +55,6 @@ export const WishList = () => {
       // }
     ]
 
-
-  useEffect(() => {
-    document.title = 'IPLStores-Wishlist'
-  },[])
 
   return (
     <>

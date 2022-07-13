@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { CartItems, CartSummary, PrimaryButton, SubNavbar } from '../../components'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { usePageTitle } from '../../hooks'
 
 export const Cart = () => {
 
@@ -30,9 +31,7 @@ export const Cart = () => {
     // }
   ]
 
-  useEffect(() => {
-    document.title = 'IPLStores-Cart'
-  },[])
+  usePageTitle('IPLStores-Cart')
 
   const displayCartItems = cartItems.map(item => {
     return(

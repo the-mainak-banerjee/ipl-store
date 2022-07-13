@@ -1,9 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+import { ProductPage } from "./pages";
+
 function App() {
   return (
-    <div >
-      <h2 className="font-lora text-bold underline text-2xl">Hello World</h2>
-      <h2 className="font-poppins text-bold underline text-2xl">Hello World</h2>
-    </div>
+    <>
+      <Routes>
+        <Route path='/products' element={<ProductPage/>}/>
+      </Routes>
+    </>
   );
 }
 

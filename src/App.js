@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components";
-import { Cart, HomePage, Login, ProductDetailsPage, ProductPage, Signup } from "./pages";
+import { Cart, HomePage, Login, ProductDetailsPage, ProductPage, Signup, WishList } from "./pages";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path='/products/:productId' element={<ProductDetailsPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/wishlist' element={<WishList/>}/>
         <Route path='/signup' element={<Signup/>}/>
       </Routes>
       <Footer/>

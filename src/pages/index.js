@@ -1,3 +1,5 @@
 export { HomePage } from './home-page/HomePage'
 export { ProductPage } from './product-pages/ProductPage'
 export { ProductDetailsPage } from './product-pages/ProductDetailsPage'
+export { Login } from './auth-pages/Login'
+export { Signup } from './auth-pages/Signup'

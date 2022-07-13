@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-const useAxios = () => {
+export const useAxios = () => {
     const [response,setResponse] = useState(undefined)
     const [error, setError] = useState('')
     const [loading,setLoading] = useState(false)

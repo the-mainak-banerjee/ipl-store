@@ -1,7 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
-import { products } from "../backend/db/products";
+// import { products } from "../backend/db/products";
 import { filterReducer } from "../reducer/filter-reducer.js";
 import { getCatagoriedProduct, getPricedProducts, getSortedProducts, getTeamsProducts } from "../utils/Filters";
+import { useProduct } from "./product-context";
 
 const FilterContext = createContext()
 
@@ -15,9 +16,10 @@ const initialState = {
 const FilterContextProvider = ({ children }) => {
 
     const [state,dispatch] = useReducer(filterReducer, initialState)
+    const {products} = useProduct()
 
     const shuffleProducts = (array)=>{
-        for(let i=0; i<array.length; i++){
+        for(let i=0; i<array?.length; i++){
             const j = Math.floor(Math.random() * (i+1));
             [array[i], array[j]] = [array[j], array[i]]
         }

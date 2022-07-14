@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { usePageTitle } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
-import { useFilter } from '../../contexts/filter-context'
+import { useFilter, useProduct } from '../../contexts'
 
 
 export const ProductPage = () => {
 
   usePageTitle('IPLStores-Products')
   const { filteredProducts } = useFilter()
+  const { loading } = useProduct()
 
   useEffect(() => {
     document.title = 'IPLStores-Products'
@@ -20,9 +21,11 @@ export const ProductPage = () => {
       </section>
       <section className='flex flex-col xl:flex-row w-full pl-10 mt-10 lg:pl-36'>
           <FilterBar />
-          <ProductList 
+          {loading
+          ? <p>Loading Products...</p> 
+          :<ProductList 
             products = {filteredProducts}
-          />
+          />}
       </section>
     </>
   )

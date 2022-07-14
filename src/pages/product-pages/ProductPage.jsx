@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { usePageTitle } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
-import { useFilter, useProduct } from '../../contexts'
+import {  useFilter, useProduct, useUser } from '../../contexts'
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 export const ProductPage = () => {
@@ -9,10 +11,12 @@ export const ProductPage = () => {
   usePageTitle('IPLStores-Products')
   const { filteredProducts } = useFilter()
   const { loading } = useProduct()
+  const { activeUser, userTocken } = useUser()
 
-  useEffect(() => {
-    document.title = 'IPLStores-Products'
-  },[])
+  
+  console.log(activeUser)
+  console.log(userTocken)
+
 
   return (
     <>
@@ -27,6 +31,7 @@ export const ProductPage = () => {
             products = {filteredProducts}
           />}
       </section>
+      {/* {showToast && <ToastContainer>'Welcome' </ToastContainer>} */}
     </>
   )
 }

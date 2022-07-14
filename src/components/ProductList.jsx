@@ -54,7 +54,6 @@ export const ProductList = ({ products }) => {
       return Array.from({length: totalPages%pageLimit}, (_,idx) => start+idx+1)
     }else{
       return Array.from({length: pageLimit}, (_,idx) => start+idx+1)
-
     }
   }
 

@@ -11,7 +11,7 @@ export const Login = () => {
 
     usePageTitle('IPLStores-Login')  
     const [loginData, setLoginData] = useState({email:'', password: ''})
-    const { handleLogin } =  useAuth()
+    const { handleLogin, loading } =  useAuth()
 
     const isValidEmail =loginData.email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -62,7 +62,7 @@ export const Login = () => {
                     Use Guest Login
                 </p>
               </div>
-                <PrimaryButton disabled={!isValidEmail || !isValidPassword}>
+                <PrimaryButton disabled={!isValidEmail || !isValidPassword || loading}>
                   Log In
                 </PrimaryButton>
               <Link to='/signup' className='flex items-center justify-center text-lg font-lora text-primaryHover hover:text-primary cursor-pointer'>

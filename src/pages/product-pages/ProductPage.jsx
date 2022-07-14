@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { usePageTitle } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
-import { useFilter, useProduct } from '../../contexts'
+import { useFilter, useProduct, useUser } from '../../contexts'
 
 
 export const ProductPage = () => {
@@ -9,6 +9,10 @@ export const ProductPage = () => {
   usePageTitle('IPLStores-Products')
   const { filteredProducts } = useFilter()
   const { loading } = useProduct()
+  const { activeUser, userTocken } = useUser()
+  
+  console.log(activeUser)
+  console.log(userTocken)
 
   useEffect(() => {
     document.title = 'IPLStores-Products'

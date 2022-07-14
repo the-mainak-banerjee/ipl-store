@@ -4,12 +4,14 @@ import { Input } from '../../components/Input'
 import { FaUserPlus } from 'react-icons/fa'
 import { PrimaryButton } from '../../components'
 import { usePageTitle } from '../../hooks'
+import { useAuth } from '../../contexts'
 
 
 export const Login = () => {
 
     usePageTitle('IPLStores-Login')  
     const [loginData, setLoginData] = useState({email:'', password: ''})
+    const { handleLogin } =  useAuth()
 
     const isValidEmail =loginData.email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -21,8 +23,9 @@ export const Login = () => {
 
   function handleSubmit(e){
     e.preventDefault()
-    console.log(loginData)
+    handleLogin(loginData)
   }
+
 
   return (
     <main>

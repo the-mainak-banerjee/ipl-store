@@ -1,13 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { FiUserPlus } from 'react-icons/fi'
+import { FiUserPlus, FiUserCheck } from 'react-icons/fi'
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { ImCross } from 'react-icons/im'
+import { useAuth } from '../contexts'
 
 
 export const SideNavBar = (props) => {
 
-    const user = true;
+    const { isLoggedIn, handleLogOut } = useAuth()
+
+    const handleLogOutButton = () => {
+        handleLogOut()
+        props.handleSideBar();
+    }
 
   return (
     <div className='w-full h-full fixed top-4 left-0 bg-[#F0F0F0] z-50'>
@@ -46,7 +52,7 @@ export const SideNavBar = (props) => {
                         Products
                     </li>
                 </NavLink>
-                {user && <NavLink 
+                {isLoggedIn && <NavLink 
                 to='/profile' 
                 className={(navData) => navData.isActive ? 'font-semibold text-secondary' : ''}>
                     <li 
@@ -56,16 +62,16 @@ export const SideNavBar = (props) => {
                         Profile
                     </li>
                 </NavLink>}
-                {user && <li 
+                {isLoggedIn && <li 
                     className='mt-4 hover:p-4 hover:text-primary hover:bg-ternary transition-all'
-                    onClick={props.handleSideBar}
+                    onClick={handleLogOutButton}
                 >
                     Logout
                 </li>}
             </ul>
         </div>
         <div className='w-full mx-auto mt-8'>
-            {user 
+            {isLoggedIn 
                 ? <ul 
                     className='flex justify-center items-center font-poppins tracking-wider text-[1.5rem]'>
                     <NavLink to='/cart'
@@ -90,6 +96,16 @@ export const SideNavBar = (props) => {
                     </NavLink>
                 </ul>
                 : <div className='flex items-center justify-center'>
+                    <NavLink to='/signup'
+                        className={(navData) => navData.isActive ? 'font-semibold text-primaryHover' : ''}>
+                        <button 
+                            className='mr-4 flex items-center tracking-wider text-[1.5rem] border-primary border-2 px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-all'
+                            onClick={props.handleSideBar}    
+                        >
+                            <p className='mr-2'>Signup</p>
+                            <FiUserPlus/>
+                        </button>
+                    </NavLink>
                     <NavLink to='/login'
                         className={(navData) => navData.isActive ? 'font-semibold text-primaryHover' : ''}>
                         <button 
@@ -97,7 +113,7 @@ export const SideNavBar = (props) => {
                             onClick={props.handleSideBar}    
                         >
                             <p className='mr-2'>Login</p>
-                            <FiUserPlus/>
+                            <FiUserCheck/>
                         </button>
                     </NavLink>
                 </div>

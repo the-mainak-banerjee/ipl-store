@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
-import { FiUserMinus, FiUserPlus } from 'react-icons/fi'
+import { FiUserMinus, FiUserCheck } from 'react-icons/fi'
 import { BsList } from 'react-icons/bs'
 import { SideNavBar } from './SideNavBar'
+import { useAuth } from '../contexts'
 
 export const Navbar = () => {
 
   const [showSideBar,setShowSideBar] = useState(false)
-  const user = true
+  const { isLoggedIn, handleLogOut } = useAuth()
 
   function handleSideBar(){
     setShowSideBar(prevState => !prevState)
@@ -42,7 +43,7 @@ export const Navbar = () => {
               Products
             </li>
           </NavLink>
-          {user && <NavLink 
+          {isLoggedIn && <NavLink 
             to='/profile' 
             className={(navData) => navData.isActive ? 'underline font-semibold text-primary' : ''}>
             <li 
@@ -51,7 +52,7 @@ export const Navbar = () => {
             </li>
           </NavLink>}
         </ul>
-        {user 
+        {isLoggedIn 
           ? <ul 
               className='hidden lg:flex items-center font-poppins tracking-wider text-[1.3rem]'>
               <NavLink to='/wishlist'
@@ -69,20 +70,32 @@ export const Navbar = () => {
                 </li>
               </NavLink>
               <li className='mr-4 flex items-center text-[1rem] cursor-pointer '>
-                <button className='flex items-center border-2 border-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all'>
+                <button 
+                  className='flex items-center border-2 border-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all'
+                  onClick={handleLogOut}
+                  >
                   <span>Logout</span>
                   <FiUserMinus className='ml-2'/>
                 </button>                  
               </li>
             </ul>
-            : <NavLink to='/login'
-                className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover hidden lg:block' : 'hidden lg:block'}>
-                <buton 
-                  className='text-xl flex items-center border-2 border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-all'>
-                  <p className='mr-2'>Login</p>
-                  <FiUserPlus/>
-                </buton>
-              </NavLink>
+            : <ul className='hidden lg:flex items-center font-poppins tracking-wider text-[1.3rem]'>
+              <NavLink to='/signup'
+                  className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover hidden lg:block' : 'hidden lg:block'}>
+                  <p 
+                    className='text-xl px-4 py-2 rounded-lg hover:text-primary transition-all'>
+                    Signup
+                  </p>
+                </NavLink>
+              <NavLink to='/login'
+                  className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover' : ''}>
+                  <button 
+                    className='text-xl flex items-center border-2 border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-all'>
+                    <p className='mr-2'>Login</p>
+                    <FiUserCheck/>
+                  </button>
+                </NavLink>
+            </ul>
             }
         <BsList 
           size='40px' 

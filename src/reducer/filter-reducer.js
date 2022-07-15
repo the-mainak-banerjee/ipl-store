@@ -23,6 +23,12 @@ export const filterReducer = (state,action) => {
                 ...state,
                 sortBy: action.payload
             }
+
+        case 'CART':
+            return {
+                ...state,
+                sharedCart: action.payload
+            }
         
         case 'CLEAR': 
             return{
@@ -30,7 +36,8 @@ export const filterReducer = (state,action) => {
                 catagory: 'all',
                 team: 'all',
                 priceRange: 2000,
-                sortBy: ''
+                sortBy: '',
+                sharedCart: []
             }
         
         default:

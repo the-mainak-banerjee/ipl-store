@@ -76,6 +76,7 @@ export const ProductList = ({ products }) => {
         discount={item.discount}
         showBoxStyle = {showBoxStyle}
         rating = {item.rating}
+        product={item}
       />
     )
   })
@@ -90,7 +91,7 @@ export const ProductList = ({ products }) => {
         <BsList className={showBoxStyle ? 'cursor-pointer text-primary' : 'cursor-pointer'} size='30px'
           onClick={() => setShowBoxStyle(true)}
         />
-        <p className='font-poppins mx-2'>{products?.length} Products Found</p>
+        <p className='font-poppins mx-2'>{products?.length>1 ? `${products?.length} Products Found` : `${products?.length} Product Found`} <span className='text-[0.8rem]'>[Click On <strong>'CLEAR FILTER'</strong> To See All Products] </span></p>
       </div>
 
       <hr className='border-primary'/>

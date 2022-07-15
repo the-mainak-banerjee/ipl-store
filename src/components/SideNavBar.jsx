@@ -63,7 +63,7 @@ export const SideNavBar = (props) => {
                     </li>
                 </NavLink>}
                 {isLoggedIn && <li 
-                    className='mt-4 hover:p-4 hover:text-primary hover:bg-ternary transition-all'
+                    className='mt-4 hover:p-4 hover:text-primary hover:bg-ternary transition-all cursor-pointer'
                     onClick={handleLogOutButton}
                 >
                     Logout
@@ -80,8 +80,11 @@ export const SideNavBar = (props) => {
                             className='mr-4 hover:text-primaryHover flex items-center'
                             onClick={props.handleSideBar}
                         >
-                                <p className='mr-2'>Cart</p>
-                            <AiOutlineShoppingCart/>
+                            <p className='mr-2'>Cart</p>
+                            <p className='relative'>
+                                <AiOutlineShoppingCart/>
+                                {props.cartLength>0 && <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-5px] left-4 font-semibold text-primary'>{props.cartLength}</span>}
+                            </p>
                         </li>
                     </NavLink>
                     <NavLink to='/wishlist'
@@ -91,7 +94,10 @@ export const SideNavBar = (props) => {
                             onClick={props.handleSideBar}    
                         >
                             <p className='mr-2'>WishList</p>
-                            <AiOutlineHeart/>
+                            <p className='relative'>
+                                <AiOutlineHeart/>
+                                {props.wishListLength>0 && <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-5px] left-4 font-semibold text-primary'>{props.wishListLength}</span>}
+                            </p>
                         </li>
                     </NavLink>
                 </ul>

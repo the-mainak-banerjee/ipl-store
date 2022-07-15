@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SubNavbar, UserDetails } from '../../components'
+import { SubNavbar, UserDetails, UserAddress } from '../../components'
 import { usePageTitle } from '../../hooks'
 
 
@@ -35,9 +35,9 @@ export const Profile = () => {
                 onClick={() => setDisplayCard(2)}
             >Your Orders</button>
         </section>
-        <section className='px-10 my-10 lg:px-36 h-[60vh]'>
+        <section className='px-10 my-10 lg:px-36'>
             {displayCard === 0 && <UserDetails/>}
-            {displayCard === 1 && <p>Address Info Goes Here</p>}
+            {displayCard === 1 && <UserAddress/>}
             {displayCard === 2 && <p>Order Info Goes Here</p>}
         </section>
     </>

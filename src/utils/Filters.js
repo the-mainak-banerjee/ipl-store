@@ -1,3 +1,11 @@
+const getSharedCartProducts = (sharedCart,products) => {
+    if(sharedCart.length === 0) {
+        return products
+    }else{
+        return products.filter(item => sharedCart.includes(item.id))
+    }
+}
+
 const getCatagoriedProduct = (catagory,products) => {
     if(catagory === 'all'){
         return products
@@ -58,4 +66,4 @@ const getSortedProducts = (sortBy,products) => {
     }
 }
 
-export { getCatagoriedProduct, getTeamsProducts, getPricedProducts, getSortedProducts }
+export { getSharedCartProducts, getCatagoriedProduct, getTeamsProducts, getPricedProducts, getSortedProducts }

@@ -10,6 +10,7 @@ export const ProductList = ({ products }) => {
   const pageLimit = 3;
   const [showBoxStyle, setShowBoxStyle] = useState(false)
   const [currentPage,setCurrentPage] = useState(1)
+  
   // const [totalPages, setTotalPages] = useState()
 
   
@@ -91,7 +92,7 @@ export const ProductList = ({ products }) => {
         <BsList className={showBoxStyle ? 'cursor-pointer text-primary' : 'cursor-pointer'} size='30px'
           onClick={() => setShowBoxStyle(true)}
         />
-        <p className='font-poppins mx-2'>{products?.length>1 ? `${products?.length} Products Found` : `${products?.length} Product Found`} <span className='text-[0.8rem]'>[Click On <strong>'CLEAR FILTER'</strong> To See All Products] </span></p>
+        <p className='font-poppins mx-2'>{products?.length>1 ? `${products?.length} Products Found` : `${products?.length} Product Found`}</p>
       </div>
 
       <hr className='border-primary'/>

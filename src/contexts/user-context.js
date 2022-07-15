@@ -5,15 +5,10 @@ const UserContext = createContext()
 const UserContextProvider = ( { children }) => {
 
     const [activeUser, setActiveUser] = useState({})
-    const [userTocken, setUserTocken]  = useState()
-
-    const setUserAndTocken = (user,tocken) => {
-            setActiveUser(user)
-            setUserTocken(tocken)
-    }
+    const [userTocken, setUserTocken]  = useState(null)
 
     return(
-        <UserContext.Provider value={{ activeUser, userTocken, setUserAndTocken}}>
+        <UserContext.Provider value={{ activeUser, userTocken, setActiveUser, setUserTocken}}>
             { children }
         </UserContext.Provider>
     )

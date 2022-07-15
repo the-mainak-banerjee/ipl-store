@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./auth-context";
 import { useUser } from "./user-context";
@@ -10,9 +10,18 @@ const CartContextProvider = ({ children }) => {
 
     const [ myCart, setMyCart ] = useState()
     const [loading,setLoading] = useState(false)
+    const {setActiveUser, activeUser, userTocken} = useUser()
     const navigate = useNavigate()
     const { isLoggedIn } = useAuth()
-    const { userTocken } = useUser()
+
+    useEffect(() => {
+        if(activeUser){
+            setMyCart(activeUser.cart)
+        }else{
+            setMyCart()
+        }
+        // eslint-disable-next-line
+    },[])
 
     const addItemToCart = async (product) => {
         if(isLoggedIn){
@@ -24,6 +33,7 @@ const CartContextProvider = ({ children }) => {
                     }
                 })
                 setMyCart(response.data.cart)
+                setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
             }catch(err) {
                 console.log(err)
             }finally{
@@ -42,6 +52,7 @@ const CartContextProvider = ({ children }) => {
                 }
             })
             setMyCart(response.data.cart)
+            setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
         }catch(err){
             console.log(err)
         }
@@ -59,13 +70,18 @@ const CartContextProvider = ({ children }) => {
                 }
             })
             setMyCart(response.data.cart)
+            setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
         }catch(err){
             console.log(err)
         }
     }
 
-    const productIsInCart = (myCart,productId) =>{ 
-        return myCart?.some(item => item._id === productId)
+    const productIsInCart = (productId) =>{ 
+        if(activeUser){
+            return activeUser.cart?.some(item => item._id === productId)
+        }else{
+            return false
+        }
     }
 
     return (

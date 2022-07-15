@@ -4,7 +4,7 @@ import { AiFillCloseSquare } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { FaUserCheck } from 'react-icons/fa'
 
-export const Input = ({label, type, value, validation, onChange, status }) => {
+export const Input = ({label, type, value, validation, onChange, status, name }) => {
     
     const [focus,setFocus] = useState(null)
 
@@ -42,6 +42,7 @@ export const Input = ({label, type, value, validation, onChange, status }) => {
         type={type}
         required
         value={value}
+        name={name}
         onChange={onChange}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}

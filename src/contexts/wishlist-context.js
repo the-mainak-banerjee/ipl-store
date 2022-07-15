@@ -12,27 +12,7 @@ const WishListContextProvider = ({ children }) => {
 
     const { isLoggedIn } = useAuth()
     const { userTocken } = useUser()
-    const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     const getWishListItem = async () =>{
-    //         if(isLoggedIn){ 
-    //             try {
-    //                 const response = await axios.get(`/api/user/wishlist`, {
-    //                     headers: {
-    //                     authorization: userTocken
-    //                 }})
-    //                 setMyWishList(response.data.wishlist)
-    //             } catch(err) {
-    //                 console.log(err)
-    //             }
-    //         }
-    //     }
-
-    //     getWishListItem()
-    // }, [isLoggedIn,userTocken])
-
-    
+    const navigate = useNavigate()    
 
     const addToWishList = async (product) => {
         if(isLoggedIn) {

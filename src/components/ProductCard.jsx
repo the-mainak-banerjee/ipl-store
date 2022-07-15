@@ -1,13 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {AiOutlineHeart, AiFillStar, AiFillHeart} from 'react-icons/ai'
-import { useWishList } from '../contexts'
+import { useCart, useWishList } from '../contexts'
 
 export const ProductCard = ({product,id,name,description,price,src,discount,rating, showBoxStyle}) => {
   
   const { addToWishList, removeFromWishlist, myWishList, productIsInWishList } = useWishList()
+  const {addItemToCart, productIsInCart, myCart, loading} = useCart()
+  const navigate = useNavigate()
 
   const isProductInWishList = productIsInWishList(myWishList, id)
+  const isProductInCart = productIsInCart(myCart, id)
 
   const addItemToWishlist = () => {
     addToWishList(product)
@@ -45,10 +48,19 @@ export const ProductCard = ({product,id,name,description,price,src,discount,rati
           <h2 className='text-2xl'>&#8377; {price} <span className='text-sm font-light'>{discount}% Discount</span></h2>
         </div>
 
-        <button 
-            className='bg-secondary px-8 py-2 font-light w-full hover:bg-secondaryHover hover:font-semibold'>
+        {isProductInCart 
+        ? <button 
+            className='bg-primary text-white px-8 py-2 font-light w-full hover:bg-primaryHover hover:font-semibold'
+            onClick={() => navigate('/cart')}
+            >
+            Go to Cart
+          </button>
+        : <button 
+            className='bg-secondary px-8 py-2 font-light w-full hover:bg-secondaryHover hover:font-semibold'
+            onClick={() => addItemToCart(product)}
+            >
             Add To Cart
-        </button>
+          </button>}
       </div>}
 
 
@@ -80,10 +92,20 @@ export const ProductCard = ({product,id,name,description,price,src,discount,rati
               <span className='flex items-center bg-primary text-white px-2 rounded'>{rating} <AiFillStar/></span>
             </div>
 
-            <button 
-              className='bg-secondary mt-4 px-10 py-2 font-light hover:bg-secondaryHover hover:font-semibold'>
+            {isProductInCart 
+            ? <button 
+              className='bg-primary mt-4 px-10 py-2 text-white  font-light hover:bg-primaryHover hover:font-semibold'
+              onClick={() => navigate('/cart')}
+              >
+              Go To Cart
+              </button>
+            : <button 
+              disabled={loading}
+              className='bg-secondary mt-4 px-10 py-2 font-light hover:bg-secondaryHover hover:font-semibold disabled:bg-ternary'
+              onClick={() => addItemToCart(product)}
+              >
               Add To Cart
-          </button>
+              </button>}
         </div>
       </div>}
     </>

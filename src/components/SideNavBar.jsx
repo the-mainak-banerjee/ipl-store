@@ -83,7 +83,7 @@ export const SideNavBar = (props) => {
                             <p className='mr-2'>Cart</p>
                             <p className='relative'>
                                 <AiOutlineShoppingCart/>
-                                <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-5px] left-4 font-semibold text-primary'>2</span>
+                                {props.cartLength>0 && <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-5px] left-4 font-semibold text-primary'>{props.cartLength}</span>}
                             </p>
                         </li>
                     </NavLink>

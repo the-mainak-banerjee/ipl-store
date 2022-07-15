@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useFilter } from '../contexts/filter-context'
 import { PrimaryButton } from './PrimaryButton'
 
@@ -7,6 +8,18 @@ export const FilterBar = () => {
 
 
   const { state, dispatch } = useFilter()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+
+  useEffect(() => {
+    let params = searchParams.get('cart')
+    if(params){
+      dispatch({type:'CART', payload: params.split(',')})
+    }
+
+    // eslint-disable-next-line
+  },[searchParams])
+
 
   const handleCatagories = (e) => {
     dispatch({ type: 'CAT', payload: e.target.value})
@@ -26,6 +39,8 @@ export const FilterBar = () => {
 
   const handleClear = () => {
     dispatch({ type: 'CLEAR'})
+    searchParams.delete('cart')
+    setSearchParams(searchParams)
   }
 
 

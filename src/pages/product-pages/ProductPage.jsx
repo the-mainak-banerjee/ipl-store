@@ -1,7 +1,7 @@
 import React from 'react'
 import { usePageTitle } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
-import {  useFilter, useProduct, useUser } from '../../contexts'
+import {  useFilter, useProduct } from '../../contexts'
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,11 +11,7 @@ export const ProductPage = () => {
   usePageTitle('IPLStores-Products')
   const { filteredProducts } = useFilter()
   const { loading } = useProduct()
-  const { activeUser, userTocken } = useUser()
-
-  
-  // console.log(activeUser)
-  // console.log(userTocken)
+  // const { activeUser, userTocken } = useUser()
 
 
   return (

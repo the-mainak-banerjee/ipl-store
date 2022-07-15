@@ -4,13 +4,14 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { FiUserMinus, FiUserCheck } from 'react-icons/fi'
 import { BsList } from 'react-icons/bs'
 import { SideNavBar } from './SideNavBar'
-import { useAuth, useWishList } from '../contexts'
+import { useAuth, useCart, useWishList } from '../contexts'
 
 export const Navbar = () => {
 
   const [showSideBar,setShowSideBar] = useState(false)
   const { isLoggedIn, handleLogOut } = useAuth()
   const { myWishList } = useWishList()
+  const { myCart } = useCart()
 
   function handleSideBar(){
     setShowSideBar(prevState => !prevState)
@@ -70,7 +71,7 @@ export const Navbar = () => {
                 <li 
                   className='mr-4 hover:text-primaryHover relative'>
                    <AiOutlineShoppingCart/>
-                   <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-3px] left-4 font-semibold text-primary'>2</span>
+                   {myCart?.length>0 && <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-3px] left-4 font-semibold text-primary'>{myCart?.length}</span>}
                 </li>
               </NavLink>
               <li className='mr-4 flex items-center text-[1rem] cursor-pointer '>
@@ -108,7 +109,11 @@ export const Navbar = () => {
           onClick={handleSideBar}
         />
       </div>
-      {showSideBar && <SideNavBar handleSideBar={handleSideBar} wishListLength={myWishList?.length}/>}
+      {showSideBar && <SideNavBar 
+        handleSideBar={handleSideBar} 
+        wishListLength={myWishList?.length}
+        cartLength={myCart?.length}
+      />}
     </>
   )
 }

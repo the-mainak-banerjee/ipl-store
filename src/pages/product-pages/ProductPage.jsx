@@ -14,8 +14,8 @@ export const ProductPage = () => {
   const { activeUser, userTocken } = useUser()
 
   
-  console.log(activeUser)
-  console.log(userTocken)
+  // console.log(activeUser)
+  // console.log(userTocken)
 
 
   return (

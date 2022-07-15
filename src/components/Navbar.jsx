@@ -4,12 +4,13 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { FiUserMinus, FiUserCheck } from 'react-icons/fi'
 import { BsList } from 'react-icons/bs'
 import { SideNavBar } from './SideNavBar'
-import { useAuth } from '../contexts'
+import { useAuth, useWishList } from '../contexts'
 
 export const Navbar = () => {
 
   const [showSideBar,setShowSideBar] = useState(false)
   const { isLoggedIn, handleLogOut } = useAuth()
+  const { myWishList } = useWishList()
 
   function handleSideBar(){
     setShowSideBar(prevState => !prevState)
@@ -54,19 +55,22 @@ export const Navbar = () => {
         </ul>
         {isLoggedIn 
           ? <ul 
-              className='hidden lg:flex items-center font-poppins tracking-wider text-[1.3rem]'>
-              <NavLink to='/wishlist'
-                className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover' : ''}>
-                <li 
-                  className='mr-4 hover:text-primaryHover'>
-                  <AiOutlineHeart/>
-                </li>
+              className='hidden lg:flex items-center font-poppins tracking-wider text-[1.7rem]'>
+               <NavLink to='/wishlist'
+                  className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover' : ''}>
+                  <li 
+                    className='mr-4 hover:text-primaryHover relative'>
+                      <AiOutlineHeart/>
+                      {myWishList?.length>0 && <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-3px] left-4 font-semibold text-primary'>{myWishList?.length}</span>}
+                  </li>
               </NavLink>
+              
               <NavLink to='/cart'
                 className={(navData) => navData.isActive ? 'underline font-semibold text-primaryHover' : ''}>
                 <li 
-                  className='mr-4 hover:text-primaryHover'>
+                  className='mr-4 hover:text-primaryHover relative'>
                    <AiOutlineShoppingCart/>
+                   <span className='bg-white rounded-[50%] px-1 text-[0.7rem] absolute top-[-3px] left-4 font-semibold text-primary'>2</span>
                 </li>
               </NavLink>
               <li className='mr-4 flex items-center text-[1rem] cursor-pointer '>
@@ -104,7 +108,7 @@ export const Navbar = () => {
           onClick={handleSideBar}
         />
       </div>
-      {showSideBar && <SideNavBar handleSideBar={handleSideBar}/>}
+      {showSideBar && <SideNavBar handleSideBar={handleSideBar} wishListLength={myWishList?.length}/>}
     </>
   )
 }

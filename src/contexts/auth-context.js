@@ -16,7 +16,7 @@ const AuthContextProvider = ({ children }) => {
     const {setUserAndTocken} = useUser()
     const navigate = useNavigate()
     const location = useLocation()
-    const destination = location.state?.from || '/products'
+    const destination = location.state?.from?.pathname || '/products'
 
 
     const handleSignUp = async (signUpData) => {

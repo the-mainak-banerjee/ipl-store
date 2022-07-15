@@ -20,6 +20,8 @@ export const ProductCard = ({product,id,name,description,price,src,discount,rati
     removeFromWishlist(id)
   }
 
+  console.log(myCart)
+
   return (
     <>
       {!showBoxStyle && <div className='mr-4 mt-4 w-96 sm:w-60 font-poppins transition-all'>

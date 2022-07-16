@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { MdOutlineClear } from 'react-icons/md'
 import { useSearchParams } from 'react-router-dom'
 import { useFilter } from '../contexts/filter-context'
 import { PrimaryButton } from './PrimaryButton'
@@ -6,7 +8,7 @@ import { PrimaryButton } from './PrimaryButton'
 
 export const FilterBar = () => {
 
-
+  const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useFilter()
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -16,9 +18,15 @@ export const FilterBar = () => {
     if(params){
       dispatch({type:'CART', payload: params.split(',')})
     }
-
+    
     // eslint-disable-next-line
   },[searchParams])
+  
+  useEffect(() => {
+    dispatch({type:'SEARCH', payload: ''})
+    
+    // eslint-disable-next-line
+  },[])
 
 
   const handleCatagories = (e) => {
@@ -43,10 +51,39 @@ export const FilterBar = () => {
     setSearchParams(searchParams)
   }
 
+  const handleSearch = (e) => {
+    e.preventDefault()
+    dispatch({ type: 'SEARCH', payload: searchTerm})
+  }
+ 
+  const clearSearchTerm = () => {
+    setSearchTerm('')
+    dispatch({ type: 'SEARCH', payload: ''})
+  }
 
 
   return (
       <aside className='font-poppins lg:sticky lg:top-0 lg:h-screen mb-10'>
+  
+          <form onSubmit={handleSearch} className='flex items-center mb-4'>
+            <div className='relative flex items-center'>
+              <input 
+                type='text' 
+                placeholder='Search By csk or jersy' 
+                value={searchTerm}
+                className='outline-0 px-3 py-1 mr-1 rounded-lg'
+                onChange={(e) => setSearchTerm(e.target.value.trim())}
+                />
+              {searchTerm?.length>0 && <button type='button' className='absolute right-4' onClick={clearSearchTerm}>
+                <MdOutlineClear size='20px' className='text-red-700 cursor-pointer hover:scale-110'/>
+              </button>}
+            </div>
+            <button>
+              <AiOutlineSearch size='20px' className='text-primary cursor-pointer hover:scale-110'/>
+            </button>
+          </form>
+        
+
         <div className='flex flex-col items-start mb-4'>
           <label className='mb-2 font-lora text-xl'>Catagory</label>
           <span><input type='radio' name='catagory' value='all' checked={state.catagory === 'all'} onChange={handleCatagories}/> All </span>

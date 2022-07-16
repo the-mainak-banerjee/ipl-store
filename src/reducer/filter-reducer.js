@@ -29,6 +29,12 @@ export const filterReducer = (state,action) => {
                 ...state,
                 sharedCart: action.payload
             }
+
+        case 'SEARCH':
+            return {
+                ...state,
+                searchedQuery: action.payload
+            }
         
         case 'CLEAR': 
             return{

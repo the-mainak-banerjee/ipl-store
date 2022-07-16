@@ -20,18 +20,28 @@ export const UserAddress = () => {
         userTocken: userTocken,
     })
 
+    const dummyAddress = {
+        fName: 'User',
+        mobile: 9876543210,
+        pin: 712418,
+        address: '89,Sector-V,SaltLake',
+        town: 'Kolkata',
+        state: 'West Bengal',
+        userTocken: userTocken
+    }
+
     const validateData = (data) => {
-        return data.length > 2
+        return data?.length > 2
     }
 
     useEffect(() => {
         if(
-            addressData.fName.length > 2 &&
-            addressData.mobile.length > 9 &&
-            addressData.pin.length > 5 &&
-            addressData.address.length > 2 &&
-            addressData.town.length > 2 &&
-            addressData.state.length > 2
+            addressData.fName?.length > 2 &&
+            addressData.mobile?.length > 9 &&
+            addressData.pin?.length > 5 &&
+            addressData.address?.length > 2 &&
+            addressData.town?.length > 2 &&
+            addressData.state?.length > 2
         ){
             setValidData(true)
         }else{
@@ -39,9 +49,8 @@ export const UserAddress = () => {
         }
     }, [addressData])
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
-        createUserAddress(addressData)
+    const addressFormHandler = (address) => {
+        createUserAddress(address)
         setShowAddressForm(false)
         setAddressData({
             fName: '',
@@ -53,6 +62,17 @@ export const UserAddress = () => {
             userTocken: userTocken,
         })
     }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        addressFormHandler(addressData)
+    }
+
+    const handleDummyAddress = () => {
+        addressFormHandler(dummyAddress)
+    }
+
+    
     
     let showAddressDetails = currentUserAddress?.map((item,idx) => {
         return (
@@ -104,7 +124,7 @@ export const UserAddress = () => {
                             type = 'number'
                             name='mobile'
                             value={addressData.mobile}
-                            validation={addressData.mobile.length > 9}
+                            validation={addressData.mobile?.length > 9}
                             errMsg='Invalid Mobile Number'
                             onChange={(e) => setAddressData(prevData => ({...prevData, mobile:e.target.value}))}
                         />
@@ -114,8 +134,8 @@ export const UserAddress = () => {
                             type = 'number'
                             name='pin'
                             value={addressData.pin}
-                            validation={addressData.pin.length>5}
-                            errMsg='Pin Length Should Be more Than 6'
+                            validation={addressData.pin?.length > 5}
+                            errMsg='Pin Length Should Be more Than 5'
                             onChange={(e) => setAddressData(prevData => ({...prevData, pin:e.target.value}))}
                         />
                         <Input
@@ -146,6 +166,11 @@ export const UserAddress = () => {
                             onChange={(e) => setAddressData(prevData => ({...prevData, state:e.target.value}))}
                         />
                         <PrimaryButton disabled={!validData}>Save Address</PrimaryButton>
+                        <p 
+                            className='cursor-pointer text-primary text-center hover:underline' 
+                            onClick={handleDummyAddress}>
+                            Add Dummy Address
+                        </p>
                     </form>
                 </div>
             </div>

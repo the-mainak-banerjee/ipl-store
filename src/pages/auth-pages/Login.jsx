@@ -14,6 +14,10 @@ export const Login = () => {
     usePageTitle('IPLStores-Login')  
     const [loginData, setLoginData] = useState({email:'', password: ''})
     const { handleLogin, loading } =  useAuth()
+    const guestUserData = {
+      email: "guest@user.abc",
+      password: "guestuser",
+    }
 
     const isValidEmail =loginData.email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -60,7 +64,10 @@ export const Login = () => {
                   onChange={(e) => setLoginData(prevData => ({...prevData, password:e.target.value}))}
                 />
                 <div className='text-sm text-primary text-right w-full'>
-                  <p className='hover:underline cursor-pointer'>
+                  <p 
+                    className='hover:underline cursor-pointer'
+                    onClick={() => handleLogin(guestUserData)}
+                  >
                       Use Guest Login
                   </p>
                 </div>

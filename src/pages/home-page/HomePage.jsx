@@ -17,7 +17,7 @@ import { usePageTitle, useToast } from '../../hooks'
 
   const popularCatagoris = categories.map(item => {
     return (
-      <div key={item._id} className='w-96 sm:w-1/3 sm:h-96 mx-2 my-8 cursor-pointer hover:shadow-2xl hover:scale-105' onClick={() => dispatch({type:'CAT', payload:`${item.categoryName}`})}>
+      <div key={item._id} className='w-80 sm:w-1/3 sm:h-96 mx-2 my-8 cursor-pointer hover:shadow-2xl hover:scale-105' onClick={() => dispatch({type:'CAT', payload:`${item.categoryName}`})}>
       <Link to='/products'>
           <img src={item.src} alt={item.name} className='w-full h-full '/>     
           <p className='text-center w-full bg-secondary text-xl font-poppins px-4 py-2'>{item.name}</p>    

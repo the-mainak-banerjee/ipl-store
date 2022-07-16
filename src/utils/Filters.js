@@ -1,3 +1,14 @@
+const getSearchedProducts = (searchQuery, products) => {
+    if(searchQuery === '' || searchQuery.toLowerCase() === 'ipl') {
+        return products
+    }  
+    else{
+        return products.filter(item => (
+            item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase())
+        ))
+    }
+}
+
 const getSharedCartProducts = (sharedCart,products) => {
     if(sharedCart.length === 0) {
         return products
@@ -66,4 +77,4 @@ const getSortedProducts = (sortBy,products) => {
     }
 }
 
-export { getSharedCartProducts, getCatagoriedProduct, getTeamsProducts, getPricedProducts, getSortedProducts }
+export { getSearchedProducts, getSharedCartProducts, getCatagoriedProduct, getTeamsProducts, getPricedProducts, getSortedProducts }

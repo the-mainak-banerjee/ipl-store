@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 // import { products } from "../backend/db/products";
 import { filterReducer } from "../reducer/filter-reducer.js";
-import { getCatagoriedProduct, getPricedProducts, getSortedProducts, getTeamsProducts, getSharedCartProducts } from "../utils/Filters";
+import { getCatagoriedProduct, getPricedProducts, getSortedProducts, getTeamsProducts, getSharedCartProducts, getSearchedProducts } from "../utils/Filters";
 import { useProduct } from "./product-context";
 
 const FilterContext = createContext()
@@ -11,13 +11,16 @@ const initialState = {
     catagory: 'all',
     team: 'all',
     priceRange: 2000,
-    sortBy: ''
+    sortBy: '',
+    searchedQuery: ''
 }
 
 const FilterContextProvider = ({ children }) => {
 
     const [state,dispatch] = useReducer(filterReducer, initialState)
     const {products} = useProduct()
+
+    // console.log(products)
 
     const shuffleProducts = (array)=>{
         for(let i=0; i<array?.length; i++){
@@ -30,13 +33,14 @@ const FilterContextProvider = ({ children }) => {
 
 
     const sharedCartProducts = getSharedCartProducts(state.sharedCart,products)
-    const catagoriedProducts = getCatagoriedProduct(state.catagory,sharedCartProducts)
+    const searchedProducts = getSearchedProducts(state.searchedQuery,sharedCartProducts)
+    const catagoriedProducts = getCatagoriedProduct(state.catagory,searchedProducts)
     const teamsProducts = getTeamsProducts(state.team,catagoriedProducts)
     const pricedProducts = getPricedProducts(state.priceRange, teamsProducts)
     const sortedProducts = getSortedProducts(state.sortBy,pricedProducts)
 
     const filteredProducts = sortedProducts
-    // console.log(sharedCartProducts)
+    console.log(filteredProducts)
 
     return (
         <FilterContext.Provider value={{state,dispatch, filteredProducts}}>

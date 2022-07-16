@@ -16,19 +16,19 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <AuthContextProvider>
-          <AddressContextProvider>  
-            <ProductContextProvider>
-              <CartContextProvider>
-                <WishListContextProvider>
-                  <FilterContextProvider>
-                    <App />
-                  </FilterContextProvider>
-                </WishListContextProvider>
-              </CartContextProvider>
-            </ProductContextProvider>
-          </AddressContextProvider>
-        </AuthContextProvider>
+        <ProductContextProvider>
+          <FilterContextProvider>
+            <AuthContextProvider>
+              <AddressContextProvider>  
+                  <CartContextProvider>
+                    <WishListContextProvider>
+                      <App />
+                    </WishListContextProvider>
+                  </CartContextProvider>
+              </AddressContextProvider>
+            </AuthContextProvider>
+          </FilterContextProvider>
+        </ProductContextProvider>
       </UserContextProvider>  
     </BrowserRouter>
   // </React.StrictMode>

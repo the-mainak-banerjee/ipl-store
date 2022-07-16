@@ -4,7 +4,7 @@ import { Input } from '../../components/Input'
 import { FaUserPlus } from 'react-icons/fa'
 import { PrimaryButton } from '../../components'
 import { usePageTitle } from '../../hooks'
-import { useAuth, useFilter } from '../../contexts'
+import { useAuth } from '../../contexts'
 
 
 export const Login = () => {
@@ -12,7 +12,6 @@ export const Login = () => {
     usePageTitle('IPLStores-Login')  
     const [loginData, setLoginData] = useState({email:'', password: ''})
     const { handleLogin, loading } =  useAuth()
-    const { dispatch } = useFilter()
     const guestUserData = {
       email: "guest@user.abc",
       password: "guestuser",
@@ -29,9 +28,7 @@ export const Login = () => {
   function handleSubmit(e){
     e.preventDefault()
     handleLogin(loginData)
-    dispatch({type: 'CLEAR'})
   }
-
 
   return (
     <>

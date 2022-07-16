@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaUserCheck } from 'react-icons/fa'
 import { PrimaryButton, Input } from '../../components';
 import { usePageTitle } from '../../hooks';
-import { useAuth, useFilter } from '../../contexts';
+import { useAuth } from '../../contexts';
 
 
 
@@ -12,7 +12,6 @@ export const Signup = () => {
     usePageTitle('IPLStores-Signup')  
     const [signUpData, setSignUpData] = useState({email:'', password: '', firstName:''})
     const {handleSignUp, loading} = useAuth()
-    const { dispatch } = useFilter()
 
     const isValidEmail =signUpData.email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -27,7 +26,6 @@ export const Signup = () => {
     function handleSubmit(e){
         e.preventDefault()
         handleSignUp(signUpData)
-        dispatch({type: 'CLEAR'})
     }
 
   return (

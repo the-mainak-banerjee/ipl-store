@@ -4,6 +4,7 @@ import axios from "axios";
 import { useUser } from "./user-context";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useFilter } from "./filter-context";
 
 
 
@@ -15,6 +16,7 @@ const AuthContextProvider = ({ children }) => {
     const [loading,setLoading] = useState()
     const [showToast,setShowToast] = useState('')
     const {setActiveUser,setUserTocken} = useUser()
+    const { dispatch } = useFilter()
     const navigate = useNavigate()
     const location = useLocation()
     const destination = location.state?.from?.pathname || '/products'
@@ -36,6 +38,7 @@ const AuthContextProvider = ({ children }) => {
             setActiveUser(response.data.createdUser)
             setUserTocken(response.data.encodedToken)
             setShowToast('signup')
+            // dispatch({type: 'CLEAR'})
             navigate(destination, { replace: true })
         }catch(err){
             console.log(err)
@@ -57,6 +60,7 @@ const AuthContextProvider = ({ children }) => {
             setActiveUser(response.data.foundUser)
             setUserTocken(response.data.encodedToken)
             setShowToast('login')
+            // dispatch({type: 'CLEAR'})
             navigate(destination, {replace: true})
         }catch(err){
             console.log(err)
@@ -79,6 +83,7 @@ const AuthContextProvider = ({ children }) => {
         setIsLoggedIn(false)
         setActiveUser({})
         setUserTocken(null)
+        dispatch({type: 'CLEAR'})
         navigate('/login', { replace: true })
     }
 

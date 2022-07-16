@@ -1,13 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { products } from '../../backend/db/products';
 import { usePageTitle } from '../../hooks';
 import { ProductDetailsCard, ProductList, SubNavbar } from '../../components';
+import { useFilter } from '../../contexts';
 
 export const ProductDetailsPage = () => {
     const params = useParams();
-    const product = products.find(item => item._id === params.productId)
-    const relatedProducts = products.filter(item => item.catagory === product?.catagory)
+    const { filteredProducts } = useFilter()
+    const product = filteredProducts.find(item => item._id === params.productId)
+    const relatedProducts = filteredProducts.filter(item => item.catagory === product?.catagory)
     const productIndex = relatedProducts.findIndex(item => item._id === params.productId)
     relatedProducts.splice(productIndex,1)
     

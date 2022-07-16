@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { usePageTitle, useToast } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
 import { useFilter, useProduct } from '../../contexts'
@@ -8,16 +8,9 @@ export const ProductPage = () => {
 
   usePageTitle('IPLStores-Products')
   useToast()
-  const { filteredProducts, dispatch } = useFilter()
+  const { filteredProducts } = useFilter()
   const { loading } = useProduct()
-  
-
   // const { activeUser, userTocken } = useUser()
-
-  useEffect(() => {
-    dispatch({ type: 'CLEAR' })
-  },[])
-
   
 
 

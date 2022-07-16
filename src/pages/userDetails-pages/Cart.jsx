@@ -5,7 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { usePageTitle, useToast } from '../../hooks'
 import { useCart } from '../../contexts'
 
-export const Cart = () => {
+const Cart = () => {
 
   const { myCart, removeFromCart } = useCart()
 
@@ -63,4 +63,6 @@ export const Cart = () => {
     </>
   )
 }
+
+export default Cart
 

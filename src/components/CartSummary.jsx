@@ -75,6 +75,7 @@ export const CartSummary = () => {
         <div className='py-2 flex justify-between font-bold'>
             Total: <span className='text-green-800'>&#8377; {actualPrice - totalDiscount + 200} </span>
         </div>
+        <hr className='border-black'/>      
         <div className='flex flex-col'>
             <button className='flex justify-center items-center bg-secondary py-2 px-4 rounded-lg my-4 hover:bg-secondaryHover'>Checkout <BsFillBagCheckFill className='ml-2'/> </button>
             <button 

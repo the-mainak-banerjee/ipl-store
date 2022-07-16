@@ -6,7 +6,7 @@ import { usePageTitle, useToast } from '../../hooks'
 import { useWishList } from '../../contexts'
 
 
-export const WishList = () => {
+const WishList = () => {
 
     usePageTitle('IPLStores-Wishlist')
     useToast()
@@ -35,3 +35,4 @@ export const WishList = () => {
   )
 }
 
+export default WishList

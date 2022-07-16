@@ -7,7 +7,7 @@ import { useFilter } from '../../contexts/filter-context'
 import { usePageTitle, useToast } from '../../hooks'
 
 
-export const HomePage = () => {
+ const HomePage = () => {
 
   usePageTitle('IPLStores')  
   useToast()
@@ -43,3 +43,5 @@ export const HomePage = () => {
     </>
   )
 }
+
+export default HomePage

@@ -1,14 +1,23 @@
 import { Route, Routes } from "react-router-dom";
-import { Footer, Navbar, PrivateRoute, RestrictedRoute } from "./components";
-import { Cart, FourOFourPage, HomePage, Login, ProductDetailsPage, ProductPage, Profile, Signup, WishList } from "./pages";
+import { Footer, Loading, Navbar, PrivateRoute, RestrictedRoute } from "./components";
+import { FourOFourPage, Login, ProductDetailsPage, ProductPage, Signup } from "./pages";
 import ScrollToTop from "./utils/ScrollToTop";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import React, { Suspense } from "react";
+
+const HomePage = React.lazy(() => import('./pages/home-page/HomePage'))
+const Profile = React.lazy(() => import('./pages/userDetails-pages/Profile'))
+const Cart = React.lazy(() => import('./pages/userDetails-pages/Cart'))
+const WishList = React.lazy(() => import('./pages/userDetails-pages/WishList'))
+
+
 
 function App() {
   return (
     <>
       <ScrollToTop>
+      <Suspense fallback={<Loading/>}>
         <Navbar/>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
@@ -27,6 +36,7 @@ function App() {
         </Routes>
         <Footer/>
         <ToastContainer autoClose={1500} position='top-left'/>
+      </Suspense>
       </ScrollToTop>
     </>
   );

@@ -3,7 +3,7 @@ import { SubNavbar, UserDetails, UserAddress } from '../../components'
 import { usePageTitle, useToast } from '../../hooks'
 
 
-export const Profile = () => {
+const Profile = () => {
 
     usePageTitle('IPLStores-Profile')
     useToast()
@@ -41,3 +41,4 @@ export const Profile = () => {
   )
 }
 
+export default Profile

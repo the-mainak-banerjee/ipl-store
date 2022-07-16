@@ -24,7 +24,7 @@ export const ProductPage = () => {
       <section className='flex flex-col xl:flex-row w-full pl-10 mt-10 lg:pl-36'>
           <FilterBar />
           {loading
-          ? <p>Loading Products...</p> 
+          ? <div className='flex justify-center w-full'><p className='font-lora text-2xl font-bold text-primary'>Loading Products...</p></div> 
           :<ProductList 
             products = {filteredProducts}
           />}

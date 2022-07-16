@@ -20,7 +20,6 @@ const FilterContextProvider = ({ children }) => {
     const [state,dispatch] = useReducer(filterReducer, initialState)
     const {products} = useProduct()
 
-    // console.log(products)
 
     const shuffleProducts = (array)=>{
         for(let i=0; i<array?.length; i++){
@@ -40,7 +39,6 @@ const FilterContextProvider = ({ children }) => {
     const sortedProducts = getSortedProducts(state.sortBy,pricedProducts)
 
     const filteredProducts = sortedProducts
-    console.log(filteredProducts)
 
     return (
         <FilterContext.Provider value={{state,dispatch, filteredProducts}}>

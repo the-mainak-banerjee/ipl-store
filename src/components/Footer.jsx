@@ -40,7 +40,7 @@ export const Footer = () => {
             <h4 className='text-lg text-black text-left'>Social</h4>
             <ul className='text-left list-none flex flex-col justify-around'>
                 <li className='cursor-pointer hover:text-primary hover:underline'>
-                    <a href='linkedIn.com/in/themainakb/'> 
+                    <a href='https://linkedIn.com/in/themainakb/'> 
                         LinkedIn 
                     </a>
                 </li>

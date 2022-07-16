@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { MdOutlineMarkEmailRead } from 'react-icons/md'
-import { AiFillCloseSquare } from 'react-icons/ai'
+import { AiFillCloseSquare, AiFillCheckSquare } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { FaUserCheck } from 'react-icons/fa'
 
-export const Input = ({label, type, value, validation, onChange, status, name }) => {
+export const Input = ({label, type, value, validation, onChange, name, errMsg }) => {
     
     const [focus,setFocus] = useState(null)
 
     return (
-    <div className='my-2'>
+    <div className='my-1'>
       <label htmlFor={label} className={`flex justify-between items-center px-4 text-black relative top-2 ${focus && 'text-blue-700'}`}>
         <span className={`bg-ternary px-2 ${!validation ? value ? 'text-red-700' : '' : 'text-green-700'}`}>{label}</span>
         {value && <span className='bg-ternary px-2 py-1'>
@@ -31,9 +31,13 @@ export const Input = ({label, type, value, validation, onChange, status, name })
                 ) : (
                     <AiFillCloseSquare className={validation ? '' : 'text-red-700'}/>
                 )
-            ) : (
-                status
-            )}
+            ) : 
+                validation ? (
+                    <AiFillCheckSquare className={validation ? 'text-green-700' : ''}/>
+                ) : (
+                    <AiFillCloseSquare className={validation ? '' : 'text-red-700'}/>
+                )
+            }
         </span>}
       </label>
       <input
@@ -47,6 +51,7 @@ export const Input = ({label, type, value, validation, onChange, status, name })
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         />
+        <p className={`text-red-800 text-xs font-bold ${!validation && value ? 'block' : 'hidden'}`}>{errMsg}</p>
     </div>
   )
 }

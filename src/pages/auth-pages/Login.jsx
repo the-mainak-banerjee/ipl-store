@@ -46,18 +46,17 @@ export const Login = () => {
                   required = {true}
                   label = 'Email'
                   type = 'email'
-                  status =''
-                  validation={isValidEmail}
                   value={loginData.email}
+                  validation={isValidEmail}
                   onChange={(e) => setLoginData(prevData => ({...prevData, email:e.target.value}))}
                 />
                 <Input
                   required = {true}
                   label = 'Password'
                   type = 'password'
-                  status =''
-                  validation={isValidPassword}
                   value={loginData.password}
+                  validation={isValidPassword}
+                  errMsg='Password Length Should Be More Than 6'
                   onChange={(e) => setLoginData(prevData => ({...prevData, password:e.target.value}))}
                 />
                 <div className='text-sm text-primary text-right w-full'>

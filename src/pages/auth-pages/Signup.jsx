@@ -68,6 +68,7 @@ export const Signup = () => {
                   status =''
                   validation={isValidPassword}
                   value={signUpData.password}
+                  errMsg='Password Length Should Be More Than 6'
                   onChange={(e) => setSignUpData(prevData => ({...prevData, password:e.target.value}))}
                 />
                 <PrimaryButton disabled={!isValidEmail || !isValidPassword || !isValidName || loading} >

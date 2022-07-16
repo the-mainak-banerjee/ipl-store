@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BiPencil } from 'react-icons/bi'
+import { useUser } from '../contexts/user-context'
 import { Input } from './Input'
 import { PrimaryButton } from './PrimaryButton'
 
@@ -7,6 +8,7 @@ export const UserDetails = () => {
 
     const [showEditForm, setShowEditForm] = useState(false)
     const [userName, setUserName] = useState('')
+    const { activeUser, setActiveUser } = useUser()
 
     const isValidName = userName?.length > 1
 
@@ -16,9 +18,10 @@ export const UserDetails = () => {
 
     function handleNameSubmit(e){
         // e.preventDefault()
-        console.log(userName)
         setShowEditForm(false)
+        setActiveUser(prevData => ({...prevData, firstName: userName}))
     }
+
 
   return (
     <div className='w-full px-4 py-24 z-50'>
@@ -26,10 +29,10 @@ export const UserDetails = () => {
           <div className='max-w-[320px] mx-auto py-8 flex flex-col items-center justify-center font-poppins'>
             <h2 
                 className='font-lora text-[2.5rem] text-center bg-secondary rounded-[50%] px-4'>
-                G
+                {activeUser.firstName[0]}
             </h2>
-            <p className='my-4'>Email: guest@gmail.com</p>   
-            {!showEditForm && <p>Name: Guest</p>}
+            <p className='my-4'>Email: {activeUser.email}</p>   
+            {!showEditForm && <p>Name: {activeUser.firstName}</p>}
             {!showEditForm && <PrimaryButton onClick={handleEditButton}>Edit <BiPencil className='ml-2' /></PrimaryButton> }
             {showEditForm && <Input 
                     required = {true}
@@ -41,6 +44,7 @@ export const UserDetails = () => {
                     onChange={(e) => setUserName(e.target.value)}
                     />}
             {showEditForm && <PrimaryButton onClick={handleNameSubmit}>Submit</PrimaryButton>}  
+            {showEditForm && <p className='cursor-pointer text-red-500 hover:underline' onClick={() => setShowEditForm(false)}>Cancel</p>}  
           </div>
         </div>
     </div>

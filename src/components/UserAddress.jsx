@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAddress, useUser } from '../contexts'
 import { Input } from './Input'
 import { PrimaryButton } from './PrimaryButton'
@@ -7,8 +7,9 @@ import { v4 as uuid } from "uuid";
 
 export const UserAddress = () => {
     const [showAddressFrom, setShowAddressForm] = useState(false)
+    const [validData, setValidData] = useState(false)
     const { userTocken } = useUser()
-    const { createUserAddress, currentUserAddress } = useAddress()
+    const { createUserAddress, currentUserAddress, deleteAddresss } = useAddress()
     const [addressData, setAddressData] = useState({
         fName: '',
         mobile:'',
@@ -16,29 +17,41 @@ export const UserAddress = () => {
         address: '',
         town:'',
         state:'',
-        userTocken: userTocken
+        userTocken: userTocken,
     })
-
-    
 
     const validateData = (data) => {
         return data.length > 2
     }
 
-    const handleFormData= (e) => {
-        const {name, value} = e.target
-        setAddressData(prevData => (
-            {
-                ...prevData,
-                [name]: value
-            }
-        ))
-    }
+    useEffect(() => {
+        if(
+            addressData.fName.length > 2 &&
+            addressData.mobile.length > 9 &&
+            addressData.pin.length > 5 &&
+            addressData.address.length > 2 &&
+            addressData.town.length > 2 &&
+            addressData.state.length > 2
+        ){
+            setValidData(true)
+        }else{
+            setValidData(false)
+        }
+    }, [addressData])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
         createUserAddress(addressData)
         setShowAddressForm(false)
+        setAddressData({
+            fName: '',
+            mobile:'',
+            pin: '',
+            address: '',
+            town:'',
+            state:'',
+            userTocken: userTocken,
+        })
     }
     
     let showAddressDetails = currentUserAddress?.map((item,idx) => {
@@ -55,7 +68,8 @@ export const UserAddress = () => {
                     <p className='my-4'>Pin: {item?.pin}</p>   
                     <p className='my-4'>Address: {item?.address}</p>   
                     <p className='my-4'>City/Town: {item?.town}</p>   
-                    <p className='my-4'>State: {item?.state}</p>   
+                    <p className='my-4'>State: {item?.state}</p>
+                    <button className='bg-red-500 px-4 py-2 rounded-lg hover:scale-105' onClick={() => deleteAddresss(item.id)}>Delete Address</button>   
                 </div>
                 </div>
             </div>
@@ -71,7 +85,7 @@ export const UserAddress = () => {
                 {showAddressFrom ? 'Cancel' : 'Add New Address'}
             </PrimaryButton>
         </div>
-        {showAddressFrom && <div className='w-full px-4 py-24 z-50'>
+        {showAddressFrom && <div className='w-full px-4 py-8 z-50'>
             <div className='max-w-[450px] mx-auto bg-ternary rounded-xl shadow-lg shadow-primaryHover'>
                 <div className='max-w-[320px] mx-auto py-8 flex flex-col items-center justify-center font-poppins'>
                     <form onSubmit={handleFormSubmit}>
@@ -79,63 +93,59 @@ export const UserAddress = () => {
                             required = {true}
                             label = 'Full Name'
                             type = 'text'
-                            status =''
                             name='fName'
-                            // value={addressData.fName}
+                            value={addressData.fName}
                             validation={validateData(addressData.fName)}
-                            onChange={handleFormData}
+                            onChange={(e) => setAddressData(prevData => ({...prevData, fName:e.target.value}))}
                         />
                         <Input
                             required = {true}
                             label = 'Mobile'
-                            type = 'text'
-                            status =''
+                            type = 'number'
                             name='mobile'
-                            // value={addressData.mobile}
-                            validation={validateData(addressData.mobile)}
-                            onChange={handleFormData}
+                            value={addressData.mobile}
+                            validation={addressData.mobile.length > 9}
+                            errMsg='Invalid Mobile Number'
+                            onChange={(e) => setAddressData(prevData => ({...prevData, mobile:e.target.value}))}
                         />
                         <Input
                             required = {true}
                             label = 'Pin'
-                            type = 'text'
-                            status =''
+                            type = 'number'
                             name='pin'
-                            // value={addressData.pin}
-                            validation={validateData(addressData.pin)}
-                            onChange={handleFormData}
+                            value={addressData.pin}
+                            validation={addressData.pin.length>5}
+                            errMsg='Pin Length Should Be more Than 6'
+                            onChange={(e) => setAddressData(prevData => ({...prevData, pin:e.target.value}))}
                         />
                         <Input
                             required = {true}
                             label = 'Address'
                             type = 'text'
-                            status =''
                             name='address'
-                            // value={addressData.address}
+                            value={addressData.address}
                             validation={validateData(addressData.address)}
-                            onChange={handleFormData}
+                            onChange={(e) => setAddressData(prevData => ({...prevData, address:e.target.value}))}
                         />
                         <Input
                             required = {true}
                             label = 'City/Town'
                             type = 'text'
-                            status =''
                             name='town'
-                            // value={addressData.town}
+                            value={addressData.town}
                             validation={validateData(addressData.town)}
-                            onChange={handleFormData}
+                            onChange={(e) => setAddressData(prevData => ({...prevData, town:e.target.value}))}
                         />
                         <Input
                             required = {true}
                             label = 'State'
                             type = 'text'
-                            status =''
                             name='state'
-                            // value={addressData.state}
+                            value={addressData.state}
                             validation={validateData(addressData.state)}
-                            onChange={handleFormData}
+                            onChange={(e) => setAddressData(prevData => ({...prevData, state:e.target.value}))}
                         />
-                        <PrimaryButton>Save Address</PrimaryButton>
+                        <PrimaryButton disabled={!validData}>Save Address</PrimaryButton>
                     </form>
                 </div>
             </div>

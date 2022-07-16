@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useUser } from "./user-context";
+import { v4 as uuid } from "uuid";
 
 const AddressContext = createContext()
 
@@ -11,7 +12,7 @@ const AddressContextProvider = ({ children }) => {
 
     const createUserAddress = (address) => {
         if(userTocken) {
-            localStorage.setItem('iplstore-user-address', JSON.stringify(address))
+            localStorage.setItem('iplstore-user-address', JSON.stringify({...address, id:uuid()}))
             setUserAddress(prevData => [...prevData, JSON.parse(localStorage.getItem('iplstore-user-address'))])
         }    
     }
@@ -20,8 +21,13 @@ const AddressContextProvider = ({ children }) => {
         return item.userTocken === userTocken
     })
 
+    const deleteAddresss = (id) => {
+        const filteredAddress = userAddress?.filter(item => item.id !== id)
+        setUserAddress(filteredAddress)
+    }
+
     return (
-        <AddressContext.Provider value={{ createUserAddress, currentUserAddress }}>
+        <AddressContext.Provider value={{ createUserAddress, currentUserAddress, deleteAddresss }}>
             { children }
         </AddressContext.Provider>
         

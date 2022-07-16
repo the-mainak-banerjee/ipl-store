@@ -30,15 +30,10 @@ export const Profile = () => {
                 className={`${button_style} ${displayCard === 1 ? button_active : 'bg-secondary text-black'}`}
                 onClick={() => setDisplayCard(1)}
             >Your Address</button>
-            <button 
-                className={`${button_style} ${displayCard === 2 ? button_active : 'bg-secondary text-black'}`}
-                onClick={() => setDisplayCard(2)}
-            >Your Orders</button>
         </section>
         <section className='px-10 my-10 lg:px-36'>
             {displayCard === 0 && <UserDetails/>}
             {displayCard === 1 && <UserAddress/>}
-            {displayCard === 2 && <p>Order Info Goes Here</p>}
         </section>
     </>
 

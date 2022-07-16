@@ -5,8 +5,6 @@ import { FaUserPlus } from 'react-icons/fa'
 import { PrimaryButton } from '../../components'
 import { usePageTitle } from '../../hooks'
 import { useAuth } from '../../contexts'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Login = () => {
@@ -83,7 +81,6 @@ export const Login = () => {
           </div>
         </div>
       </main>
-      <ToastContainer autoClose={1000}/>
     </>
   )
 }

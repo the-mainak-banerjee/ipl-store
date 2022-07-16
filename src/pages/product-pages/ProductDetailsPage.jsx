@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../../backend/db/products';
 import { usePageTitle } from '../../hooks';
-import { ProductDetailsCard, ProductList } from '../../components';
+import { ProductDetailsCard, ProductList, SubNavbar } from '../../components';
 
 export const ProductDetailsPage = () => {
     const params = useParams();
@@ -15,6 +15,9 @@ export const ProductDetailsPage = () => {
 
   return (
     <>
+      <section>
+        <SubNavbar pageName='Products' param={product?.name}/>
+      </section>
       {product ? <ProductDetailsCard
         product={product}
       /> : <p className='text-center font-lora text-xl'>No Product Found</p>}

@@ -7,11 +7,11 @@ import { useProduct } from "./product-context";
 const FilterContext = createContext()
 
 const initialState = {
+    sharedCart: [],
     catagory: 'all',
     team: 'all',
     priceRange: 2000,
-    sortBy: '',
-    sharedCart: []
+    sortBy: ''
 }
 
 const FilterContextProvider = ({ children }) => {
@@ -19,16 +19,15 @@ const FilterContextProvider = ({ children }) => {
     const [state,dispatch] = useReducer(filterReducer, initialState)
     const {products} = useProduct()
 
-    // const shuffleProducts = (array)=>{
-    //     for(let i=0; i<array?.length; i++){
-    //         const j = Math.floor(Math.random() * (i+1));
-    //         [array[i], array[j]] = [array[j], array[i]]
-    //     }
-    // }
+    const shuffleProducts = (array)=>{
+        for(let i=0; i<array?.length; i++){
+            const j = Math.floor(Math.random() * (i+1));
+            [array[i], array[j]] = [array[j], array[i]]
+        }
+    }
 
-    // shuffleProducts(products)
-    // console.log(state.sharedCart)
-    // console.log(products)
+    shuffleProducts(products)
+
 
     const sharedCartProducts = getSharedCartProducts(state.sharedCart,products)
     const catagoriedProducts = getCatagoriedProduct(state.catagory,sharedCartProducts)

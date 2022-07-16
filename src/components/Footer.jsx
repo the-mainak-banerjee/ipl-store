@@ -29,7 +29,7 @@ export const Footer = () => {
                         <NavLink className={(navData) => navData.isActive ? 'text-primary underline' : ''} to='/'>Home</NavLink>
                     </li>
                     <li className='cursor-pointer hover:text-primary hover:underline'>
-                        <NavLink className={(navData) => navData.isActive ? 'text-primary underline' : ''} to='/products'>Products</NavLink>
+                        <NavLink className={(navData) => navData.isActive ? 'text-primary underline' : ''} end to='/products'>Products</NavLink>
                     </li>
                     <li className='cursor-pointer hover:text-primary hover:underline'>
                         <NavLink className={(navData) => navData.isActive ? 'text-primary underline' : ''} to='/cart'>Cart</NavLink>

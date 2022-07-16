@@ -43,6 +43,7 @@ export const SideNavBar = (props) => {
                     </li>
                 </NavLink>
                 <NavLink 
+                end
                 to='/products' 
                 className={(navData) => navData.isActive ? 'font-semibold text-secondary' : ''}>
                     <li 

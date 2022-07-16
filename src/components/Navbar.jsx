@@ -38,6 +38,7 @@ export const Navbar = () => {
               </li>
           </NavLink>
           <NavLink 
+            end
             to='/products' 
             className={(navData) => navData.isActive ? 'underline font-semibold text-primary' : ''}>
             <li 

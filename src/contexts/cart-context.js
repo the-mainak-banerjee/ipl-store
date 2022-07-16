@@ -35,7 +35,7 @@ const CartContextProvider = ({ children }) => {
                 })
                 setMyCart(response.data.cart)
                 setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
-                toast.success('Added Item To Cart')
+                toast.success(`Added Item To Cart`)
             }catch(err) {
                 console.log(err)
             }finally{
@@ -55,7 +55,7 @@ const CartContextProvider = ({ children }) => {
             })
             setMyCart(response.data.cart)
             setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
-            toast.success('Removed Item From Cart')
+            toast.success(`Removed Item From Cart`)
         }catch(err){
             console.log(err)
         }

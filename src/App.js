@@ -26,7 +26,7 @@ function App() {
           <Route path='/*' element={<FourOFourPage/>}/>
         </Routes>
         <Footer/>
-        <ToastContainer autoClose={1000}/>
+        <ToastContainer autoClose={1500} position='top-left'/>
       </ScrollToTop>
     </>
   );

@@ -1,6 +1,8 @@
 import React from 'react'
 import { BsShare, BsFillBagCheckFill } from 'react-icons/bs'
 import { useCart } from '../contexts'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CartSummary = () => {
     
@@ -44,9 +46,9 @@ export const CartSummary = () => {
         
         try{
             await navigator.clipboard.writeText(shareCartUrl)
-            alert('Cart URL Copied To Clipboard. Share With Your Friends')
+            toast.success('Cart URL Copied To Clipboard. Share With Your Friends')
         }catch(err){
-            alert('Failed To Copy.', err)
+            toast.error(`Failed To Copy. ${err}`)
         }
     }
 

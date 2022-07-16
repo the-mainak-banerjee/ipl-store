@@ -34,7 +34,7 @@ const Cart = () => {
           <SubNavbar pageName='Cart'/>
       </section>
       {myCart?.length > 0 
-        ? <section className='w-full pl-10 mt-10 lg:pl-36'>
+        ? <section className='w-full flex flex-col items-center justify-center mt-10 lg:pl-36'>
             <div className='flex flex-col flex-1'>
             {displayCartItems}
             </div>
@@ -53,7 +53,7 @@ const Cart = () => {
               <CartSummary />
             </div>
         </section> 
-        : <section className='w-full pl-10 mt-10 lg:pl-36 font-poppins'>
+        : <section className='w-full mt-10 lg:pl-36 font-poppins flex items-center justify-center'>
             <div className='h-[60vh] flex flex-col items-center justify-center'>
               <h3 className='text-2xl font-bold font-lora'>Your Cart Is Empty</h3> 
               <Link to='/products'><PrimaryButton>Fill It <AiOutlineShoppingCart className='ml-2'/></PrimaryButton></Link>

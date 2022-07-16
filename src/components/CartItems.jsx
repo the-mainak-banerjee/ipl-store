@@ -2,15 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BsFillTrashFill } from 'react-icons/bs'
 import {AiFillHeart} from 'react-icons/ai'
-import { useCart, useWishList } from '../contexts'
+import { useCart,  useWishList } from '../contexts'
 import { PrimaryButton } from './PrimaryButton'
 
 export const CartItems = ({product,src,id,name,description,price,discount,qty}) => {
 
   const { removeFromCart, updateCartItem } = useCart()
-  const { productIsInWishList, addToWishList, myWishList } = useWishList()
+  const { productIsInWishList, addToWishList } = useWishList()
 
-  const isProductInWishList = productIsInWishList(myWishList, id)
+  const isProductInWishList = productIsInWishList(id)
 
 
   return (

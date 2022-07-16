@@ -13,10 +13,10 @@ const AuthContextProvider = ({ children }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loading,setLoading] = useState()
-    const {setUserAndTocken} = useUser()
+    const {setActiveUser,setUserTocken} = useUser()
     const navigate = useNavigate()
     const location = useLocation()
-    const destination = location.state?.from || '/products'
+    const destination = location.state?.from?.pathname || '/products'
 
 
     const handleSignUp = async (signUpData) => {
@@ -25,7 +25,8 @@ const AuthContextProvider = ({ children }) => {
             const response = await axios.post(`/api/auth/signup`, signUpData)
             localStorage.setItem('iplstore-user-token',response.data.encodedToken)
             setIsLoggedIn(true)
-            setUserAndTocken(response.data.createdUser, response.data.encodedToken)
+            setActiveUser(response.data.createdUser)
+            setUserTocken(response.data.encodedToken)
             navigate(destination, { replace: true })
         }catch(err){
             console.log(err)
@@ -44,7 +45,8 @@ const AuthContextProvider = ({ children }) => {
             const response = await axios.post(`/api/auth/login`,loginData)
             localStorage.setItem('iplstore-user-token',response.data.encodedToken)
             setIsLoggedIn(true)
-            setUserAndTocken(response.data.foundUser, response.data.encodedToken)
+            setActiveUser(response.data.foundUser)
+            setUserTocken(response.data.encodedToken)
             navigate(destination, {replace: true})
         }catch(err){
             console.log(err)
@@ -65,6 +67,8 @@ const AuthContextProvider = ({ children }) => {
     const handleLogOut = () => {
         localStorage.clear()
         setIsLoggedIn(false)
+        setActiveUser({})
+        setUserTocken(null)
         navigate('/login', { replace: true })
     }
 

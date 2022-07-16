@@ -5,12 +5,12 @@ import { useCart, useWishList } from '../contexts'
 
 export const ProductCard = ({product,id,name,description,price,src,discount,rating, showBoxStyle}) => {
   
-  const { addToWishList, removeFromWishlist, myWishList, productIsInWishList } = useWishList()
-  const {addItemToCart, productIsInCart, myCart, loading} = useCart()
+  const { addToWishList, removeFromWishlist, productIsInWishList } = useWishList()
+  const {addItemToCart, productIsInCart,  loading} = useCart()
   const navigate = useNavigate()
 
-  const isProductInWishList = productIsInWishList(myWishList, id)
-  const isProductInCart = productIsInCart(myCart, id)
+  const isProductInWishList = productIsInWishList(id)
+  const isProductInCart = productIsInCart( id)
 
   const addItemToWishlist = () => {
     addToWishList(product)
@@ -48,7 +48,7 @@ export const ProductCard = ({product,id,name,description,price,src,discount,rati
           <h2 className='text-2xl'>&#8377; {price} <span className='text-sm font-light'>{discount}% Discount</span></h2>
         </div>
 
-        {isProductInCart 
+        {isProductInCart
         ? <button 
             className='bg-primary text-white px-8 py-2 font-light w-full hover:bg-primaryHover hover:font-semibold'
             onClick={() => navigate('/cart')}
@@ -58,6 +58,7 @@ export const ProductCard = ({product,id,name,description,price,src,discount,rati
         : <button 
             className='bg-secondary px-8 py-2 font-light w-full hover:bg-secondaryHover hover:font-semibold'
             onClick={() => addItemToCart(product)}
+            disabled={loading}
             >
             Add To Cart
           </button>}

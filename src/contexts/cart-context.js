@@ -3,6 +3,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./auth-context";
 import { useUser } from "./user-context";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartContext = createContext()
 
@@ -20,8 +22,7 @@ const CartContextProvider = ({ children }) => {
         }else{
             setMyCart()
         }
-        // eslint-disable-next-line
-    },[])
+    },[activeUser])
 
     const addItemToCart = async (product) => {
         if(isLoggedIn){
@@ -34,6 +35,7 @@ const CartContextProvider = ({ children }) => {
                 })
                 setMyCart(response.data.cart)
                 setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
+                toast.success('Added Item To Cart')
             }catch(err) {
                 console.log(err)
             }finally{
@@ -53,6 +55,7 @@ const CartContextProvider = ({ children }) => {
             })
             setMyCart(response.data.cart)
             setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
+            toast.success('Removed Item From Cart')
         }catch(err){
             console.log(err)
         }

@@ -130,6 +130,7 @@ export const ProductList = ({ products }) => {
           next
         </button>
       </div>}
+
     </div>
   )
 }

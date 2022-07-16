@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useUser } from "./user-context";
 import { v4 as uuid } from "uuid";
+import { toast } from 'react-toastify';
 
 const AddressContext = createContext()
 
@@ -24,6 +25,7 @@ const AddressContextProvider = ({ children }) => {
     const deleteAddresss = (id) => {
         const filteredAddress = userAddress?.filter(item => item.id !== id)
         setUserAddress(filteredAddress)
+        toast.success('Address Removed Successfully')
     }
 
     return (

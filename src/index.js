@@ -13,7 +13,7 @@ makeServer();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
         <AuthContextProvider>
@@ -31,7 +31,7 @@ root.render(
         </AuthContextProvider>
       </UserContextProvider>  
     </BrowserRouter>
-  </React.StrictMode>,
+  // </React.StrictMode>
 )
 
 // ReactDOM.render(

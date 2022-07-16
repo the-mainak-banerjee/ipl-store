@@ -3,6 +3,8 @@ import { BiPencil } from 'react-icons/bi'
 import { useUser } from '../contexts/user-context'
 import { Input } from './Input'
 import { PrimaryButton } from './PrimaryButton'
+import { toast } from 'react-toastify';
+
 
 export const UserDetails = () => {
 
@@ -20,6 +22,8 @@ export const UserDetails = () => {
         // e.preventDefault()
         setShowEditForm(false)
         setActiveUser(prevData => ({...prevData, firstName: userName}))
+        toast.success(`User Name Updated To "${userName}" Successfully`)
+        setUserName('')
     }
 
 

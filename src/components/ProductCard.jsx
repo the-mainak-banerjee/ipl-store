@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {AiOutlineHeart, AiFillStar, AiFillHeart} from 'react-icons/ai'
 import { useCart, useWishList } from '../contexts'
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductCard = ({product,id,name,description,price,src,discount,rating, showBoxStyle}) => {
   

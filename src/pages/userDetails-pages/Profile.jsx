@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { SubNavbar, UserDetails, UserAddress } from '../../components'
-import { usePageTitle } from '../../hooks'
+import { usePageTitle, useToast } from '../../hooks'
 
 
 export const Profile = () => {
 
     usePageTitle('IPLStores-Profile')
+    useToast()
 
     const [displayCard, setDisplayCard] = useState(0)
 

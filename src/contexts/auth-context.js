@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from "axios";
 import { useUser } from "./user-context";
@@ -13,11 +13,19 @@ const AuthContextProvider = ({ children }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loading,setLoading] = useState()
+    const [showToast,setShowToast] = useState('')
     const {setActiveUser,setUserTocken} = useUser()
     const navigate = useNavigate()
     const location = useLocation()
     const destination = location.state?.from?.pathname || '/products'
 
+    useEffect(() => {
+        if(showToast){
+            setTimeout(() => {
+                setShowToast('')
+            }, 2000)
+        }
+    }, [showToast])
 
     const handleSignUp = async (signUpData) => {
         try{
@@ -27,6 +35,7 @@ const AuthContextProvider = ({ children }) => {
             setIsLoggedIn(true)
             setActiveUser(response.data.createdUser)
             setUserTocken(response.data.encodedToken)
+            setShowToast('signup')
             navigate(destination, { replace: true })
         }catch(err){
             console.log(err)
@@ -47,6 +56,7 @@ const AuthContextProvider = ({ children }) => {
             setIsLoggedIn(true)
             setActiveUser(response.data.foundUser)
             setUserTocken(response.data.encodedToken)
+            setShowToast('login')
             navigate(destination, {replace: true})
         }catch(err){
             console.log(err)
@@ -73,7 +83,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{handleLogin, handleSignUp, handleLogOut, loading, isLoggedIn}}>
+        <AuthContext.Provider value={{handleLogin, handleSignUp, handleLogOut, loading, isLoggedIn, showToast}}>
             { children }
         </AuthContext.Provider>
     )

@@ -4,11 +4,13 @@ import { products } from '../../backend/db/products'
 import { categories } from '../../backend/db/categories'
 import { Link } from 'react-router-dom'
 import { useFilter } from '../../contexts/filter-context'
-import { usePageTitle } from '../../hooks'
+import { usePageTitle, useToast } from '../../hooks'
+
 
 export const HomePage = () => {
 
   usePageTitle('IPLStores')  
+  useToast()
   const featuredProducts = products.filter(item => item.featured === true)
   const { dispatch } = useFilter()
 

@@ -1,17 +1,19 @@
 import React from 'react'
-import { usePageTitle } from '../../hooks'
+import { usePageTitle, useToast } from '../../hooks'
 import { FilterBar, ProductList, SubNavbar } from '../../components'
-import {  useFilter, useProduct } from '../../contexts'
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { useFilter, useProduct } from '../../contexts'
 
 
 export const ProductPage = () => {
 
   usePageTitle('IPLStores-Products')
+  useToast()
   const { filteredProducts } = useFilter()
   const { loading } = useProduct()
+
   // const { activeUser, userTocken } = useUser()
+
+  
 
 
   return (
@@ -27,7 +29,6 @@ export const ProductPage = () => {
             products = {filteredProducts}
           />}
       </section>
-      {/* {showToast && <ToastContainer>'Welcome' </ToastContainer>} */}
     </>
   )
 }

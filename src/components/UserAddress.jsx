@@ -3,6 +3,8 @@ import { useAddress, useUser } from '../contexts'
 import { Input } from './Input'
 import { PrimaryButton } from './PrimaryButton'
 import { v4 as uuid } from "uuid";
+import { toast } from 'react-toastify';
+
 
 
 export const UserAddress = () => {
@@ -61,6 +63,7 @@ export const UserAddress = () => {
             state:'',
             userTocken: userTocken,
         })
+        toast.success('Address Updated Successfully')
     }
 
     const handleFormSubmit = (e) => {

@@ -2,12 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { PrimaryButton, ProductList, SubNavbar } from '../../components'
 import { AiOutlineHeart } from 'react-icons/ai'
-import { usePageTitle } from '../../hooks'
+import { usePageTitle, useToast } from '../../hooks'
 import { useWishList } from '../../contexts'
+
 
 export const WishList = () => {
 
     usePageTitle('IPLStores-Wishlist')
+    useToast()
     const { myWishList } = useWishList()
 
 
@@ -28,6 +30,7 @@ export const WishList = () => {
               </div> 
             </section>
         }
+        
     </>
   )
 }

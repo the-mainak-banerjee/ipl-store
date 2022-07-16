@@ -32,10 +32,11 @@ export const CartItems = ({product,src,id,name,description,price,discount,qty}) 
             <p className='mb-2'>{description}</p>
             <h2 className='text-2xl'>&#8377; {price} <span className='text-sm font-light'>{discount}% Discount</span></h2>
             <div className='flex items-center my-4'>
-              <div className='flex items-center mr-6 justify-between text-2xl border-ternary'>
-                <button onClick={() => updateCartItem(id,"increment")}>+</button>
-                <p className='mx-2'>{qty}</p>
+              <div className='flex items-center mr-6 justify-between text-2xl'>
+                <button className='bg-primary text-white px-2' onClick={() => updateCartItem(id,"increment")}>+</button>
+                <p className='mx-2'>Qty: {qty}</p>
                 <button 
+                  className='bg-primary text-white px-2 text-center'
                   onClick={
                     () => {
                       qty===1 ? removeFromCart(id) : updateCartItem(id,"decrement")

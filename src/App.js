@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { Footer, Navbar, PrivateRoute, RestrictedRoute } from "./components";
 import { Cart, FourOFourPage, HomePage, Login, ProductDetailsPage, ProductPage, Profile, Signup, WishList } from "./pages";
 import ScrollToTop from "./utils/ScrollToTop";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path='/*' element={<FourOFourPage/>}/>
         </Routes>
         <Footer/>
+        <ToastContainer autoClose={1000}/>
       </ScrollToTop>
     </>
   );

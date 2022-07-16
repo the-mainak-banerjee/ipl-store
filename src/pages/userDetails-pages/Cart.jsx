@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CartItems, CartSummary, PrimaryButton, SubNavbar } from '../../components'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { usePageTitle } from '../../hooks'
+import { usePageTitle, useToast } from '../../hooks'
 import { useCart } from '../../contexts'
 
 export const Cart = () => {
@@ -10,6 +10,7 @@ export const Cart = () => {
   const { myCart, removeFromCart } = useCart()
 
   usePageTitle('IPLStores-Cart')
+  useToast()
 
   const displayCartItems = myCart?.map(item => {
     return(

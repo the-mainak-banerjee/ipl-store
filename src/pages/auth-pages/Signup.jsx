@@ -83,7 +83,7 @@ export const Signup = () => {
           </div>
         </div>
       </main>
-      <ToastContainer/>
+      <ToastContainer autoClose={1000}/>
     </>
   )
 }

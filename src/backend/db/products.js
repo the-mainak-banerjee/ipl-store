@@ -25,7 +25,7 @@ export const products = [
       price: 1999,
       team: 'dc',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 4,
       discount: 20,
       src: '../../assets/images/dc/jersy.jpg',
       featured: false
@@ -37,7 +37,7 @@ export const products = [
       price: 1499,
       team: 'gt',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 3.8,
       discount: 15,
       src: '../../assets/images/gt/jersy.jpg',
       featured: false
@@ -49,7 +49,7 @@ export const products = [
       price: 2000,
       team: 'kkr',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 4.9,
       discount: 25,
       src: '../../assets/images/kkr/jersy.png',
       featured: true
@@ -61,7 +61,7 @@ export const products = [
       price: 1849,
       team: 'lsg',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 3.2,
       discount: 20,
       src: '../../assets/images/lsg/jersy.png',
       featured: false
@@ -73,7 +73,7 @@ export const products = [
       price: 1379,
       team: 'mi',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 4,
       discount: 18,
       src: '../../assets/images/mi/jersy.png',
       featured: false
@@ -85,7 +85,7 @@ export const products = [
       price: 1879,
       team: 'pbks',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 3.5,
       discount: 25,
       src: '../../assets/images/pbks/jersy.jpg',
       featured: false
@@ -97,7 +97,7 @@ export const products = [
       price: 1500,
       team: 'rcb',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 4,
       discount: 30,
       src: '../../assets/images/rcb/jersy.jpg',
       featured: false
@@ -109,7 +109,7 @@ export const products = [
       price: 1399,
       team: 'rr',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 4.6,
       discount: 25,
       src: '../../assets/images/rr/jersy.jpg',
       featured: true
@@ -121,7 +121,7 @@ export const products = [
       price: 1897,
       team: 'srh',
       catagory: 'jersy',
-      rating: 4.8,
+      rating: 3.1,
       discount: 25,
       src: '../../assets/images/srh/jersy.jpg',
       featured: false

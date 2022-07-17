@@ -30,6 +30,11 @@ export const Login = () => {
     handleLogin(loginData)
   }
 
+  function handleGuestLogin() {
+    setLoginData(guestUserData)
+    handleLogin(guestUserData)
+  }
+
   return (
     <>
       <main>
@@ -63,7 +68,7 @@ export const Login = () => {
                 <div className='text-sm text-primary text-right w-full'>
                   <p 
                     className='hover:underline cursor-pointer'
-                    onClick={() => handleLogin(guestUserData)}
+                    onClick={ handleGuestLogin }
                   >
                       Use Guest Login
                   </p>

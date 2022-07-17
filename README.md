@@ -16,9 +16,9 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 
 ### Auth:-
 
-* Trying to Access Profile, Cart or Wishlist Page With out Logging In Will <code>redirect</code> to Login Page.
+* Trying to Access Profile, Cart or Wishlist Page With out Logging In Will redirect to Login Page.
 * After LogIn Or SignUp User will redircted to Product Page.
-* Trying To Access Login or SignUp Page after Login will redirevt to Home Page.
+* Trying To Access Login or SignUp Page after Login will redirect to Home Page.
 
 ### Pages:- 
 
@@ -83,48 +83,46 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 
 ## Screens
 
-### HomePage
+### HomePage:-
 
 ![FireShot Capture 035 - IPLStores - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392835-506e2e41-1a94-42db-ad01-0a8e75d18df0.png)
 
+***
 
 
-
-### Product Page
+### Product Page:-
 
 ![FireShot Capture 036 - IPLStores-Products - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392905-9bd12d59-2927-429c-84ce-4a0ea596e1c4.png)
 
+***
 
-
-
-### Product Details Page
+### Product Details Page:-
 
 ![FireShot Capture 042 - IPLStores-Products -- RR Jersy - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393201-cc445c9b-a2ef-46a7-ae0b-e544484d5d0b.png)
 
+***
 
-
-
-### WishList Page
+### WishList Page:-
 
 ![FireShot Capture 037 - IPLStores-Wishlist - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393005-a1bb2502-d9bb-424e-a296-0bea89d800ce.png)
 
+***
 
-
-
-### Cart Page
+### Cart Page:-
 
 ![FireShot Capture 038 - IPLStores-Cart - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393049-904f922d-5a77-4be4-95ed-2ba24beeeaa1.png)
 
+***
 
+### Profile Page:-
 
-
-### Profile Page
-
-* About You
+* About You:-
 
 ![FireShot Capture 039 - IPLStores-Profile - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393112-d35935b0-9762-4869-ac0a-654ce11a048a.png)
 
-* Your Address
+***
+
+* Your Address:-
 
 ![FireShot Capture 040 - IPLStores-Profile - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393158-36590bf6-b03f-48e4-9590-056c9870f1ea.png)
 

@@ -28,6 +28,7 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 * Filters List: Catagory of products(Jersy,Cap,Mask), Individual Teams Products, Price Range, Sort By Price and Product Name.
 * Clicking on clear filter will clear all the applied filters. Also if user log out the filters will be cleared.
 * If user add a filter before login then that filter will stay active after Login also.
+* Added Pagination in Product page to show all the products. Each page will display 6 Products.
 
 ### Cart and Wishlist Management:-
 
@@ -79,3 +80,51 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 * React Router
 * React Icons
 * React Toastify
+
+## Screens
+
+### HomePage
+
+![FireShot Capture 035 - IPLStores - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392835-506e2e41-1a94-42db-ad01-0a8e75d18df0.png)
+
+
+
+
+### Product Page
+
+![FireShot Capture 036 - IPLStores-Products - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392905-9bd12d59-2927-429c-84ce-4a0ea596e1c4.png)
+
+
+
+
+### Product Details Page
+
+![FireShot Capture 042 - IPLStores-Products -- RR Jersy - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393201-cc445c9b-a2ef-46a7-ae0b-e544484d5d0b.png)
+
+
+
+
+### WishList Page
+
+![FireShot Capture 037 - IPLStores-Wishlist - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393005-a1bb2502-d9bb-424e-a296-0bea89d800ce.png)
+
+
+
+
+### Cart Page
+
+![FireShot Capture 038 - IPLStores-Cart - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393049-904f922d-5a77-4be4-95ed-2ba24beeeaa1.png)
+
+
+
+
+### Profile Page
+
+* About You
+
+![FireShot Capture 039 - IPLStores-Profile - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393112-d35935b0-9762-4869-ac0a-654ce11a048a.png)
+
+* Your Address
+
+![FireShot Capture 040 - IPLStores-Profile - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393158-36590bf6-b03f-48e4-9590-056c9870f1ea.png)
+

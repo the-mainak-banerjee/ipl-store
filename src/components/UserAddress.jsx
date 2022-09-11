@@ -6,7 +6,6 @@ import { v4 as uuid } from "uuid";
 import { toast } from 'react-toastify';
 
 
-
 export const UserAddress = () => {
     const [showAddressFrom, setShowAddressForm] = useState(false)
     const [validData, setValidData] = useState(false)
@@ -25,6 +24,7 @@ export const UserAddress = () => {
     const dummyAddress = {
         fName: 'User',
         mobile: 9876543210,
+        email: 'user@gmail.com',
         pin: 712418,
         address: '89,Sector-V,SaltLake',
         town: 'Kolkata',
@@ -57,6 +57,7 @@ export const UserAddress = () => {
         setAddressData({
             fName: '',
             mobile:'',
+            email:'',
             pin: '',
             address: '',
             town:'',

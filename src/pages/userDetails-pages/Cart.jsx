@@ -24,6 +24,7 @@ const Cart = () => {
         price = {item.price}
         discount={item.discount}
         qty = {item.qty}
+        showActions={true}
       />
     )
   })
@@ -44,13 +45,16 @@ const Cart = () => {
                 className='bg-primary text-white px-6 py-2 my-2'
                 onClick={
                   () => {
-                    myCart?.forEach(item => removeFromCart(item._id))
+                    myCart?.forEach(item => removeFromCart(item._id,false))
                   }
                 }>
                 Clear Cart</button>
             </div>
             <div className='w-[80vw] sm:w-[60vw] lg:w-[40vw]'>
-              <CartSummary />
+              <CartSummary 
+                title='Cart Summary'
+                isCart={true}
+              />
             </div>
         </section> 
         : <section className='w-full mt-10 lg:pl-36 font-poppins flex items-center justify-center'>

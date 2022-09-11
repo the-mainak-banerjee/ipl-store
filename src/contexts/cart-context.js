@@ -46,7 +46,7 @@ const CartContextProvider = ({ children }) => {
         }
     }
 
-    const removeFromCart = async (productId) => {
+    const removeFromCart = async (productId,showToast) => {
         try{
             const response = await axios.delete(`/api/user/cart/${productId}`, {
                 headers: {
@@ -55,7 +55,9 @@ const CartContextProvider = ({ children }) => {
             })
             setMyCart(response.data.cart)
             setActiveUser(prevData =>({...prevData, cart:response.data.cart}))
-            toast.success(`Removed Item From Cart`)
+            if(showToast){
+                toast.success(`Removed Item From Cart`)
+            }
         }catch(err){
             console.log(err)
         }

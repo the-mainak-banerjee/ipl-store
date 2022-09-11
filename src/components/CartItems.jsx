@@ -5,7 +5,7 @@ import {AiFillHeart} from 'react-icons/ai'
 import { useCart,  useWishList } from '../contexts'
 import { PrimaryButton } from './PrimaryButton'
 
-export const CartItems = ({product,src,id,name,description,price,discount,qty}) => {
+export const CartItems = ({product,src,id,name,description,price,discount,qty,showActions}) => {
 
   const { removeFromCart, updateCartItem } = useCart()
   const { productIsInWishList, addToWishList } = useWishList()
@@ -31,7 +31,7 @@ export const CartItems = ({product,src,id,name,description,price,discount,qty}) 
           </div>
             <p className='mb-2'>{description}</p>
             <h2 className='text-2xl'>&#8377; {price} <span className='text-sm font-light'>{discount}% Discount</span></h2>
-            <div className='flex items-center my-4'>
+            {showActions && <div className='flex items-center my-4'>
               <div className='flex items-center mr-6 justify-between text-2xl'>
                 <button className='bg-primary text-white px-2' onClick={() => updateCartItem(id,"increment")}>+</button>
                 <p className='mx-2'>Qty: {qty}</p>
@@ -39,19 +39,19 @@ export const CartItems = ({product,src,id,name,description,price,discount,qty}) 
                   className='bg-primary text-white px-2 text-center'
                   onClick={
                     () => {
-                      qty===1 ? removeFromCart(id) : updateCartItem(id,"decrement")
+                      qty===1 ? removeFromCart(id,true) : updateCartItem(id,"decrement")
                     }
                   }>
                   -
                 </button>
               </div>
-              <BsFillTrashFill size='40px' className='bg-secondary p-2 cursor-pointer' onClick={() => removeFromCart(id)}/>
-            </div>
-            {!isProductInWishList && <PrimaryButton
+              <BsFillTrashFill size='40px' className='bg-secondary p-2 cursor-pointer' onClick={() => removeFromCart(id,true)}/>
+            </div>}
+            {!isProductInWishList && showActions && <PrimaryButton
               onClick={
                 () => {
                   if(!isProductInWishList){
-                    removeFromCart(id)
+                    removeFromCart(id,false)
                     addToWishList(product)
                   }
                 }

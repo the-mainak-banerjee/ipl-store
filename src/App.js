@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer, Loading, Navbar, PrivateRoute, RestrictedRoute } from "./components";
-import { FourOFourPage, Login, ProductDetailsPage, ProductPage, Signup } from "./pages";
+import { FourOFourPage, Login, OrderSummary, ProductDetailsPage, ProductPage, Signup } from "./pages";
 import ScrollToTop from "./utils/ScrollToTop";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,6 +27,7 @@ function App() {
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/wishlist' element={<WishList/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/orderSummary' element={<OrderSummary/>}/>
           </Route>
           <Route element={<RestrictedRoute/>}>
             <Route path='/signup' element={<Signup/>}/>

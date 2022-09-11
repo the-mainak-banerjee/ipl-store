@@ -3,11 +3,13 @@ import { BsShare, BsFillBagCheckFill } from 'react-icons/bs'
 import { useCart } from '../contexts'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
-export const CartSummary = () => {
+export const CartSummary = ({title, isCart, handlePlaceOrder}) => {
     
     let totalDiscount;
     const { myCart } = useCart()
+    const navigate = useNavigate()
 
     const totalQty = myCart?.reduce((acc,curr) => {
         return acc+=curr.qty
@@ -27,6 +29,8 @@ export const CartSummary = () => {
     }else {
         totalDiscount = (actualPrice * 5) / 100
     }
+
+    const finalPrice = actualPrice - totalDiscount + 200
 
     const handleShareCart = async () => {
         let shareCartItems;
@@ -52,10 +56,14 @@ export const CartSummary = () => {
         }
     }
 
+    const handleCheckout = () => {
+        navigate('/orderSummary')
+    }
+
 
   return (
     <div className='font-poppins m-4 p-5 border-ternary border-2 rounded-lg shadow-lg'>
-        <h3 className='text-center font-lora text-2xl pb-4'>Cart Summary</h3>
+        <h3 className='text-center font-lora text-2xl pb-4'>{title}</h3>
         <hr className='border-black'/>
         <div className='py-2'>
             <div className='py-2 flex justify-between'>
@@ -73,18 +81,23 @@ export const CartSummary = () => {
         </div>
         <hr className='border-black'/>      
         <div className='py-2 flex justify-between font-bold'>
-            Total: <span className='text-green-800'>&#8377; {actualPrice - totalDiscount + 200} </span>
+            Total: <span className='text-green-800'>&#8377; {finalPrice} </span>
         </div>
         <hr className='border-black'/>      
-        <div className='flex flex-col'>
-            <button className='flex justify-center items-center bg-secondary py-2 px-4 rounded-lg my-4 hover:bg-secondaryHover'>Checkout <BsFillBagCheckFill className='ml-2'/> </button>
+        {isCart && <div className='flex flex-col'>
+            <button className='flex justify-center items-center bg-secondary py-2 px-4 rounded-lg my-4 hover:bg-secondaryHover' onClick={handleCheckout}>Checkout <BsFillBagCheckFill className='ml-2'/></button>
             <button 
                 className='flex justify-center items-center border-2 border-secondary py-2 px-4 rounded-lg my-4 hover:bg-secondary'
                 onClick={handleShareCart}>
                 Share This Cart 
                 <BsShare className='ml-2'/> 
             </button>
+        </div>}
+        {!isCart && <div className='flex flex-col'>
+            <button className='flex justify-center items-center bg-secondary py-2 px-4 rounded-lg my-4 hover:bg-secondaryHover disabled:bg-ternary' onClick={() => handlePlaceOrder(finalPrice)}>Place Order<BsFillBagCheckFill className='ml-2'/></button>
         </div>
+
+        }
     </div>
   )
 }

@@ -110,7 +110,7 @@ export const OrderSummary = () => {
   return (
     <>
         <section>
-            <SubNavbar pageName='Order Summary'/>
+            <SubNavbar pageName='Order'/>
         </section>
         {myCart?.length > 0 
            ?( 
@@ -137,7 +137,7 @@ export const OrderSummary = () => {
             ) : (
                 <section className='w-full mt-10 lg:pl-36 font-poppins flex items-center justify-center'>
                     <div className='h-[60vh] flex flex-col items-center justify-center'>
-                    <h3 className='text-2xl font-bold font-lora'>Your Cart Is Empty</h3> 
+                    <h3 className='text-2xl font-bold font-lora'>You Have No Item In Cart</h3> 
                     <Link to='/products'><PrimaryButton>Fill It <AiOutlineShoppingCart className='ml-2'/></PrimaryButton></Link>
                     </div>
                 </section>

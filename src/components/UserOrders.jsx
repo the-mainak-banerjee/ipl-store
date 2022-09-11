@@ -2,6 +2,8 @@ import React from 'react'
 import { useOrder } from '../contexts'
 import { CartItems } from './CartItems'
 import { v4 as uuid } from 'uuid'
+import { Link } from 'react-router-dom'
+import { PrimaryButton } from './PrimaryButton'
 
 const UserOrders = () => {
     const { myOrders } = useOrder()
@@ -35,6 +37,12 @@ const UserOrders = () => {
         })
 
         }
+        {myOrders?.length === 0 && <section className='w-full mt-2 font-poppins flex items-center justify-center'>
+            <div className='h-[60vh] flex flex-col items-center justify-center'>
+              <h3 className='text-2xl font-bold font-lora'>Your Have Not Placed Any Order Yet</h3> 
+              <Link to='/products'><PrimaryButton>Explore Products</PrimaryButton></Link>
+            </div>
+          </section>}
     </section>
   )
 }

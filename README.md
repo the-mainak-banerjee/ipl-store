@@ -2,6 +2,8 @@
 
 An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 
+>[Click Here](https://ipl-stores.netlify.app/) To See The Live App
+
 ## Functionalities
 
 * User Auth (Create New Account, Log In, Use Guest Login)
@@ -14,13 +16,13 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 
 ## Features
 
-### Auth:-
+### `Auth`
 
 * Trying to Access Profile, Cart or Wishlist Page With out Logging In Will redirect to Login Page.
 * After LogIn Or SignUp User will redircted to Product Page.
 * Trying To Access Login or SignUp Page after Login will redirect to Home Page.
 
-### Pages:- 
+### `Pages` 
 
 * Clicking On Shop Now Button In Home page will redirect to Product Page.
 * Clicking On Any Catagory Of Popular catagory in Home Page will redirect to Product Page and Will only show products of that catagory.
@@ -30,7 +32,7 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 * If user add a filter before login then that filter will stay active after Login also.
 * Added Pagination in Product page to show all the products. Each page will display 6 Products.
 
-### Cart and Wishlist Management:-
+### `Cart and Wishlist Management`
 
 * User Can Add/Remove to/from Wishlist by clicking on Heart button (toggle)
 * Also user can add products to cart from wishlist and vice versa.
@@ -48,7 +50,7 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 * Clicking on the 'Share This Cart' button in cart page will copy an url to clipboard. This url will redirects to product page and will only show the products which were there in the cart from where the url get copied. 
 * Number of products in Wishlist and Carts gets live updated in Navbar.
 
-### Profile:-
+### `Profile`
 
 * In the profile page About You Button will shoe the user Name and email.
 * USer can change their name by clicking on Edit button.
@@ -56,7 +58,7 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 * Use can add multiple address by clicking on Add New Address Button. 
 * User can also delete each address individually.
 
-### Toast Notification:-
+### `Toast Notification`
 
 * These below actions will followed up by Toast.
     - Successfull Signed Up
@@ -83,38 +85,38 @@ An E-Commerce Platform for IPL Fans for  IPL Teams Accessories.
 
 ## Screens
 
-### HomePage:-
+### `HomePage`
 
 ![FireShot Capture 035 - IPLStores - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392835-506e2e41-1a94-42db-ad01-0a8e75d18df0.png)
 
 ***
 
 
-### Product Page:-
+### `Product Page`
 
 ![FireShot Capture 036 - IPLStores-Products - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179392905-9bd12d59-2927-429c-84ce-4a0ea596e1c4.png)
 
 ***
 
-### Product Details Page:-
+### `Product Details Page`
 
 ![FireShot Capture 042 - IPLStores-Products -- RR Jersy - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393201-cc445c9b-a2ef-46a7-ae0b-e544484d5d0b.png)
 
 ***
 
-### WishList Page:-
+### `WishList Page`
 
 ![FireShot Capture 037 - IPLStores-Wishlist - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393005-a1bb2502-d9bb-424e-a296-0bea89d800ce.png)
 
 ***
 
-### Cart Page:-
+### `Cart Page`
 
 ![FireShot Capture 038 - IPLStores-Cart - ipl-stores netlify app](https://user-images.githubusercontent.com/94280354/179393049-904f922d-5a77-4be4-95ed-2ba24beeeaa1.png)
 
 ***
 
-### Profile Page:-
+### `Profile Page`
 
 * About You:-
 

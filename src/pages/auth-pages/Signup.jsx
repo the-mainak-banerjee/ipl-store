@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts';
 export const Signup = () => {
 
     usePageTitle('IPLStores-Signup')  
-    const [signUpData, setSignUpData] = useState({email:'', password: '', firstName:''})
+    const [signUpData, setSignUpData] = useState({email:'', password: '', confirmPassword: '', firstName:''})
     const {handleSignUp, loading} = useAuth()
 
     const isValidEmail =signUpData.email.match(
@@ -20,6 +20,7 @@ export const Signup = () => {
         : false;
 
     const isValidPassword = signUpData.password.length > 6
+    const isValidConfirmPassword =  signUpData.password ===  signUpData.confirmPassword
     const isValidName = signUpData.firstName.length > 1
 
 
@@ -68,6 +69,16 @@ export const Signup = () => {
                   value={signUpData.password}
                   errMsg='Password Length Should Be More Than 6'
                   onChange={(e) => setSignUpData(prevData => ({...prevData, password:e.target.value}))}
+                />
+                <Input
+                  required = {true}
+                  label = 'Confirm Password'
+                  type = 'password'
+                  status =''
+                  validation={isValidConfirmPassword}
+                  value={signUpData.confirmPassword}
+                  errMsg='Password is not matching'
+                  onChange={(e) => setSignUpData(prevData => ({...prevData, confirmPassword:e.target.value}))}
                 />
                 <PrimaryButton disabled={!isValidEmail || !isValidPassword || !isValidName || loading} >
                   Sign Up

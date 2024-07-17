@@ -1,41 +1,91 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { useUser } from "./user-context";
-import { v4 as uuid } from "uuid";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import axios from "axios";
+import { API_URL } from "../utils/helperVariables";
 
-const AddressContext = createContext()
+const AddressContext = createContext();
 
 const AddressContextProvider = ({ children }) => {
+  const { userTocken, setActiveUser, activeUser } = useUser();
 
-    const [userAddress, setUserAddress] = useState([])
-    const { userTocken } = useUser()
+  const createUserAddress = async (address) => {
+    if (userTocken) {
+      const addressData = {
+        name: address.fName,
+        mobile: address.mobile,
+        pin: address.pin,
+        address: address.address,
+        city: address.town,
+        state: address.state,
+      };
+      try {
+        const response = await axios.post(
+          `${API_URL}/profile/addAddress`,
+          addressData,
+          {
+            headers: {
+              authorization: userTocken,
+            },
+          }
+        );
 
-
-    const createUserAddress = (address) => {
-        if(userTocken) {
-            localStorage.setItem('iplstore-user-address', JSON.stringify({...address, id:uuid()}))
-            setUserAddress(prevData => [...prevData, JSON.parse(localStorage.getItem('iplstore-user-address'))])
-        }    
+        setActiveUser((prevData) => ({
+          ...prevData,
+          address: response.data.address,
+        }));
+        localStorage.setItem(
+          "iplstore-user-deatils",
+          JSON.stringify({ ...activeUser, address: response.data.address })
+        );
+        toast.success("Address added successfully");
+      } catch (err) {
+        console.log(err);
+      }
     }
+  };
 
-    let currentUserAddress = userAddress?.filter(item => {
-        return item.userTocken === userTocken
-    })
+  const deleteAddresss = async (id) => {
+    if (!id) return;
+    try {
+      const response = await axios.delete(
+        `${API_URL}/profile/removeAddress?addressId=${id}`,
+        {
+          headers: {
+            authorization: userTocken,
+          },
+        }
+      );
 
-    const deleteAddresss = (id) => {
-        const filteredAddress = userAddress?.filter(item => item.id !== id)
-        setUserAddress(filteredAddress)
-        toast.success('Address Removed Successfully')
+      console.log(response);
+
+      setActiveUser((prevData) => ({
+        ...prevData,
+        address: response.data.address,
+      }));
+      localStorage.setItem(
+        "iplstore-user-deatils",
+        JSON.stringify({ ...activeUser, address: response.data.address })
+      );
+      toast.success("Address removed successfully");
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    return (
-        <AddressContext.Provider value={{ createUserAddress, currentUserAddress, deleteAddresss }}>
-            { children }
-        </AddressContext.Provider>
-        
-    )
-}
+  return (
+    <AddressContext.Provider
+      value={{
+        createUserAddress,
+        currentUserAddress: activeUser?.address,
+        deleteAddresss,
+      }}
+    >
+      {children}
+    </AddressContext.Provider>
+  );
+};
 
-const useAddress = () => useContext(AddressContext)
+const useAddress = () => useContext(AddressContext);
 
-export { useAddress, AddressContextProvider}
+export { useAddress, AddressContextProvider };
